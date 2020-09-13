@@ -11,70 +11,67 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pictza.Database.DatabaseHelper;
+import com.example.pictza.Database.EventModel;
 import com.example.pictza.Database.PaintingModel;
 
 import java.util.ArrayList;
 
 public class PaintingEdit extends AppCompatActivity {
 
-    TextView upTitle,upCategory,upDescription, upPrice;
+    EditText edeventName,eddate,edtime,edlocation_event;
     Button btnUpdate,btnRemove;
-    ImageView upPainting;
-    String pid;
-    ArrayList<PaintingModel> paintingArray;
+
+
+    String eventid;
+    ArrayList<EventModel> eventArray;
     DatabaseHelper dbHelper=new DatabaseHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_painting_edit);
 
-        upTitle=findViewById(R.id.title_paint_up);
-        upCategory=findViewById(R.id.category_paint_up);
-        upDescription=findViewById(R.id.description_paint_up);
-        upPrice=findViewById(R.id.price_paint_up);
-        upPainting=findViewById(R.id.up_imagePainting);
-
-        btnUpdate=findViewById(R.id.update_painting);
-        btnRemove=findViewById(R.id.remove_painting);
+        edeventName =findViewById(R.id.edeventname);
+        eddate = findViewById(R.id.eddate);
+        edtime = findViewById(R.id.edtime);
+        edlocation_event = findViewById(R.id.edlocationevent);
 
 
-        pid=getIntent().getStringExtra("painting_id");
-        paintingArray= dbHelper.getPainting(pid);
+        btnUpdate=findViewById(R.id.updateevent);
+        btnRemove=findViewById(R.id.remove);
 
-        final int pid=paintingArray.get(0).getPid();
-        String title=paintingArray.get(0).getTitle();
-        String category=paintingArray.get(0).getCategory();
-        String description=paintingArray.get(0).getDescription();
-        String price=paintingArray.get(0).getPrice();
 
-        upTitle.setText(paintingArray.get(0).getTitle());
-        upCategory.setText(""+category);
-        upDescription.setText(""+description);
-        upPrice.setText(""+price);
+        eventid=getIntent().getStringExtra("event_id");
+        eventArray= dbHelper.getEvent(eventid);
 
-        Cursor cursor = dbHelper.getShowData("select * from painting");
+        final int eventid=eventArray.get(0).getEventId();
+        String eventname=eventArray.get(0).getEventName();
+        String eventdate=eventArray.get(0).getDate();
+        String eventtime=eventArray.get(0).getTime();
+        String eventlocation=eventArray.get(0).getLocation_event();
 
-        while (cursor.moveToNext()){
-            byte[] painting = cursor.getBlob(5);
 
-            Bitmap bitmap = BitmapFactory.decodeByteArray(painting,0,painting.length);
-            upPainting.setImageBitmap(bitmap);
-        }
+        edeventName.setText(""+eventname);
+        eddate.setText(""+eventdate);
+        edtime.setText(""+eventtime);
+        edlocation_event.setText(""+eventlocation);
 
-        final String new_title=upTitle.getText().toString();
-        final String new_category=upCategory.getText().toString();
-        final String new_description=upDescription.getText().toString();
-        final String new_price=upPrice.getText().toString();
+
+
+        final String new_eventname=edeventName.getText().toString();
+        final String new_eventdate=eddate.getText().toString();
+        final String new_eventtime=edtime.getText().toString();
+        final String new_eventlocation =edlocation_event.getText().toString();
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dbHelper.updatePainting(pid, upTitle.getText().toString(),upCategory.getText().toString(), upDescription.getText().toString(), upPrice.getText().toString())){
+                if(dbHelper.updateEvent(eventid, edeventName.getText().toString(),eddate.getText().toString(), edtime.getText().toString(), edlocation_event.getText().toString())){
                     Toast.makeText(PaintingEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(PaintingEdit.this,ManagePainting.class);
                     startActivity(intent);
@@ -92,7 +89,7 @@ public class PaintingEdit extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if(dbHelper.deletePainting(pid)){
+                                if(dbHelper.deleteEvent(eventid)){
                                     Toast.makeText(PaintingEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(PaintingEdit.this,ManagePainting.class);
                                     startActivity(intent);

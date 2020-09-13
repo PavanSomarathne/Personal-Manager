@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pictza.Database.EventModel;
 import com.example.pictza.Database.PaintingModel;
 import com.example.pictza.Database.DatabaseHelper;
 
@@ -24,7 +25,7 @@ public class ManagePainting extends AppCompatActivity {
     TableLayout table_tb;
     SearchView sv_search;
     private DatabaseHelper dbHelper;
-    private ArrayList<PaintingModel> paintingModelArrylist;
+    private ArrayList<EventModel> eventModelArrylist;
 
 
     @SuppressLint("NewApi")
@@ -33,7 +34,7 @@ public class ManagePainting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_cart);
         dbHelper=new DatabaseHelper(this);
-        paintingModelArrylist=dbHelper.getAllPaintings();
+        eventModelArrylist=dbHelper.getAllEvents();
 
         sv_search=findViewById(R.id.view_painting_search1);
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -58,43 +59,50 @@ public class ManagePainting extends AppCompatActivity {
         table_tb=findViewById(R.id.view_table);
         //TableLayout table = (TableLayout) findViewById(R.id.view_table);
         table_tb.setStretchAllColumns(true);
-        if(paintingModelArrylist!=null) {
-            for (int i = 0; i < paintingModelArrylist.size(); i++) {
+        if(eventModelArrylist!=null) {
+            for (int i = 0; i < eventModelArrylist.size(); i++) {
 
 
                 TableRow row = new TableRow(this);
                 row.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                final String pid = Integer.toString(paintingModelArrylist.get(i).getPid());
-                String title = paintingModelArrylist.get(i).getTitle();
-                String price = paintingModelArrylist.get(i).getPrice();
-                String category = paintingModelArrylist.get(i).getCategory();
+                final String eventid = Integer.toString(eventModelArrylist.get(i).getEventId());
+                String eventName  = eventModelArrylist.get(i).getEventName();
+                String eventDate = eventModelArrylist.get(i).getDate();
+                String eventTime = eventModelArrylist.get(i).getTime();
+                String eventLocation = eventModelArrylist.get(i).getLocation_event();
 
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(ManagePainting.this, PaintingEdit.class);
-                        intent.putExtra("painting_id", pid);
+                        intent.putExtra("event_id", eventid);
                         startActivity(intent);
                     }
                 });
 
-                TextView tvid = new TextView(this);
-                tvid.setText("    " + pid);
-                tvid.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
-                TextView tvtitle = new TextView(this);
-                tvtitle.setText("" + title);
-                tvtitle.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
-                TextView tvprice = new TextView(this);
-                tvprice.setText("" + price);
-                tvprice.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
+
+
+                TextView tveventName = new TextView(this);
+                tveventName.setText("" + eventName);
+                tveventName.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
+
+                TextView tveventDate = new TextView(this);
+                tveventDate.setText("" + eventDate);
+                tveventDate.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
+
+                TextView tveventTime = new TextView(this);
+                tveventTime.setText("" + eventTime);
+                tveventTime.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
 
 
 
                 row.setBottom(2);
 
-                row.addView(tvid);
-                row.addView(tvtitle);
-                row.addView(tvprice);
+
+                row.addView(tveventName);
+                row.addView(tveventDate);
+                row.addView(tveventTime);
+
                 table_tb.addView(row);
             }
         }else{

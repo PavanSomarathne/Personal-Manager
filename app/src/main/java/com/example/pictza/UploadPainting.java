@@ -21,7 +21,7 @@ import com.example.pictza.Database.DatabaseHelper;
 
 public class UploadPainting extends AppCompatActivity {
 
-    EditText  eventName,date,time,location;
+    EditText  eventName,date,time,location_event;
     Button btnAdd;
 
 
@@ -36,7 +36,7 @@ public class UploadPainting extends AppCompatActivity {
         eventName =findViewById(R.id.eventname);
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
-        location = findViewById(R.id.locationevent);
+        location_event = findViewById(R.id.locationevent);
         btnAdd=findViewById(R.id.addevent);
 
 
@@ -49,14 +49,14 @@ public class UploadPainting extends AppCompatActivity {
                 String et_location=time.getText().toString();
 
 
-               /* if(dbHelper.addEvent(et_eventname,et_date,et_time,et_location)){
+               if(dbHelper.addEvent(et_eventname,et_date,et_time,et_location)){
 
                     Toast.makeText(UploadPainting.this,"Successfully Added",Toast.LENGTH_SHORT).show();
 
 
                 }else {
                     Toast.makeText(UploadPainting.this,"Something went wrong",Toast.LENGTH_SHORT).show();
-                }*/
+                }
 
             }
         });

@@ -26,6 +26,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_LOCATION = "location";
     private static final String KEY_STATUS = "status";
 
+    private static final String TABLE_EVENT = "event";
+    private static final String KEY_EVENTID = "eventId";
+    private static final String KEY_EVENTNAME = "eventName";
+    private static final String KEY_EVENTDATE = "date";
+    private static final String KEY_EVENTTIME = "time";
+    private static final String KEY_LOCATION_EVENT = "location_event";
+
     private static final String TABLE_FRIEND = "friend";
     private static final String KEY_FRIENDID = "fid";
     private static final String KEY_FRIENDFNAME = "fName";
@@ -75,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TODO = "CREATE TABLE " + TABLE_TODO + "(" + KEY_TODOID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_TASK + " TEXT, "+ KEY_LOCATION + " TEXT, "+ KEY_STATUS + " TEXT);";
 
+    private static final String CREATE_TABLE_EVENT = "CREATE TABLE " + TABLE_EVENT + "(" + KEY_EVENTID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_EVENTNAME + " TEXT, "+ KEY_EVENTDATE+ " TEXT, "+ KEY_EVENTTIME+ " TEXT, "+ KEY_LOCATION_EVENT + " TEXT);";
 
 
 
@@ -90,6 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PAINTING);
         db.execSQL(CREATE_TABLE_CART);
         db.execSQL(CREATE_TABLE_TODO);
+        db.execSQL(CREATE_TABLE_EVENT);
 
     }
 
@@ -275,7 +284,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
-
+//ADDTODO Section Start
     public Boolean addTODO(String task, String location, String status) {
         SQLiteDatabase db = getWritableDatabase();
         // Creating content values
@@ -388,6 +397,117 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
+//ADD Event Section Start
+    public Boolean addEvent(String eventName,String date,String time,String location_event) {
+        SQLiteDatabase db = getWritableDatabase();
+        // Creating content values
+        ContentValues values = new ContentValues();
+        values.put(KEY_EVENTNAME,eventName);
+        values.put(KEY_EVENTDATE, date);
+        values.put(KEY_EVENTTIME, time);
+        values.put(KEY_LOCATION_EVENT, location_event);
+
+
+        // insert row in table
+        long insert = db.insert(TABLE_EVENT, null, values);
+
+        if(insert>=1){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    public ArrayList<EventModel> getAllEvents() {
+        // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
+        ArrayList<EventModel> eventModelArrayList = null;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_EVENT,null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            eventModelArrayList = new ArrayList<EventModel>();
+            do {
+                EventModel eventModel = new EventModel();
+                eventModel.setEventId(c.getInt(c.getColumnIndex(KEY_EVENTID)));
+                eventModel.setEventName(c.getString(c.getColumnIndex(KEY_EVENTNAME)));
+                eventModel.setDate(c.getString(c.getColumnIndex(KEY_EVENTDATE)));
+                eventModel.setTime(c.getString(c.getColumnIndex(KEY_EVENTTIME)));
+                eventModel.setLocation_event(c.getString(c.getColumnIndex(KEY_LOCATION_EVENT)));
+
+                // adding to customer list
+                eventModelArrayList.add(eventModel);
+            } while (c.moveToNext());
+        }
+        return eventModelArrayList;
+
+    }
+
+
+    public ArrayList<EventModel> getEvent(String id){
+
+        ArrayList<EventModel> eventArray = null;
+        SQLiteDatabase db=getReadableDatabase();
+        String[] args={id};
+        Cursor c=db.rawQuery("SELECT * FROM "+TABLE_EVENT+" WHERE "+KEY_EVENTID+" = ?",args);
+        if(c.moveToFirst()){
+            eventArray=new ArrayList<EventModel>();
+            do{
+                EventModel eventModel=new EventModel();
+                eventModel.setEventId(c.getInt(c.getColumnIndex(KEY_EVENTID)));
+                eventModel.setEventName(c.getString(c.getColumnIndex(KEY_EVENTNAME)));
+                eventModel.setDate(c.getString(c.getColumnIndex(KEY_EVENTDATE)));
+                eventModel.setTime(c.getString(c.getColumnIndex(KEY_EVENTTIME)));
+                eventModel.setLocation_event(c.getString(c.getColumnIndex(KEY_LOCATION_EVENT)));
+
+                eventArray.add(eventModel);
+
+            }while (c.moveToNext());
+        }
+        return eventArray;
+
+    }
+
+
+    public Boolean updateEvent(int id,String eventName,String date,String time,String location_event) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Creating content values
+        ContentValues values = new ContentValues();
+        values.put(KEY_EVENTNAME,eventName);
+        values.put(KEY_EVENTDATE, date);
+        values.put(KEY_EVENTTIME, time);
+        values.put(KEY_LOCATION_EVENT, location_event);
+
+        // update row in customer table base on customer.is value
+        //String args=Integer.toString(id);
+        int row=db.update(TABLE_EVENT, values,KEY_EVENTID + " = ?",new String[]{String.valueOf(id)});
+        if(row>=1){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public Boolean deleteEvent(int id) {
+
+        // delete row in customer table based on id
+        SQLiteDatabase db = this.getWritableDatabase();
+        int row=db.delete(TABLE_EVENT, KEY_EVENTID + " = ?",
+                new String[]{String.valueOf(id)});
+
+        if(row>=1){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+
 
     public ArrayList<CustomerModel> getAllCustomers() {
         // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
