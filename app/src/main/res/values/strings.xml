@@ -165,7 +165,7 @@
     <string name="addbuynow">Add to Buy it Now</string>
     <string name="addauction">Add to Auction</string>
 
-
+    <string name="updateto">"Update TODO Tasks"</string>
     <string name="upload">Add New Events</string>
     <string name="title">Task name</string>
     <string name="category">Location</string>
@@ -224,7 +224,7 @@
         <item>Rather not say</item>
     </string-array>
 
-    <string-array name="status">
+    <string-array name="status_array">
         <item>Completed</item>
         <item>Not Completed</item>
     </string-array>

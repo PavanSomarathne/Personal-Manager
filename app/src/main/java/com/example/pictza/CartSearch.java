@@ -10,9 +10,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +26,9 @@ import java.util.ArrayList;
 public class CartSearch extends AppCompatActivity {
 
 
+    Spinner status;
 
-
-    EditText  task,status,location;
+    EditText  task,location;
     Button btnAdd;
     String pid;
 
@@ -35,9 +37,15 @@ public class CartSearch extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_search);
+        status = (Spinner) findViewById(R.id.status);
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.status_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        status.setAdapter(adapter);
         task =findViewById(R.id.task);
-        status = findViewById(R.id.status);
+       // status = findViewById(R.id.status);
+
         location = findViewById(R.id.location);
         btnAdd=findViewById(R.id.add_todo);
 
@@ -50,7 +58,7 @@ public class CartSearch extends AppCompatActivity {
             public void onClick(View view) {
                 String et_task=task.getText().toString();
                 String et_location=location.getText().toString();
-                String et_status=status.getText().toString();
+                String et_status=status.getSelectedItem().toString();
 
 
                 if(dbHelper.addTODO(et_task, et_location, et_status)){

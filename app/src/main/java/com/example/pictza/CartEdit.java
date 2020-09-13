@@ -10,9 +10,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +28,8 @@ import java.util.ArrayList;
 
 public class CartEdit extends AppCompatActivity {
 
-
-    EditText edtask,edstatus,edlocation;
+    Spinner edstatus;
+    EditText edtask,edlocation;
     Button btnUpdate,btnRemove;
     String todoId;
 
@@ -39,7 +41,12 @@ public class CartEdit extends AppCompatActivity {
         setContentView(R.layout.activity_cart_edit);
 
         edtask =findViewById(R.id.edtask);
-        edstatus = findViewById(R.id.edstatus);
+        edstatus = (Spinner) findViewById(R.id.edstatus);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.status_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        edstatus.setAdapter(adapter);
         edlocation = findViewById(R.id.edlocation);
 
 
@@ -60,12 +67,13 @@ public class CartEdit extends AppCompatActivity {
 
 
         edtask.setText(""+task);
-        edstatus.setText(""+status);
+        edstatus.getSelectedItem().toString();
+
         edlocation.setText(""+location);
 
 
  final String new_task = edtask.getText().toString();
-final String new_status = edstatus.getText().toString();
+final String new_status = edstatus.getSelectedItem().toString();
 final String new_location = edlocation.getText().toString();
 
 
@@ -74,7 +82,7 @@ final String new_location = edlocation.getText().toString();
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dbHelper.updateTODO(todoId, edtask.getText().toString(),edstatus.getText().toString(), edlocation.getText().toString())){
+                if(dbHelper.updateTODO(todoId, edtask.getText().toString(),edstatus.getSelectedItem().toString(), edlocation.getText().toString())){
                     Toast.makeText(CartEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(CartEdit.this,CartView.class);
                     startActivity(intent);
