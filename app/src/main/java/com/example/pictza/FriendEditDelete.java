@@ -37,7 +37,7 @@ public class CustomerEditDelete extends AppCompatActivity {
 
 
         id=getIntent().getStringExtra("customer_id");
-        customerArray= dbHelper.getCustomer(id);
+        //customerArray= dbHelper.getCustomer(id);
 
         final int id=customerArray.get(0).getId();
         String name=customerArray.get(0).getUsername();
@@ -55,13 +55,13 @@ public class CustomerEditDelete extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dbHelper.updateCustomer(id, upName.getText().toString(),upEmail.getText().toString(), upPassword.getText().toString())){
-                    Toast.makeText(CustomerEditDelete.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(CustomerEditDelete.this,auction.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(CustomerEditDelete.this,"Something went wrong",Toast.LENGTH_SHORT).show();
-                }
+//                if(dbHelper.updateCustomer(id, upName.getText().toString(),upEmail.getText().toString(), upPassword.getText().toString())){
+//                    Toast.makeText(CustomerEditDelete.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
+//                    Intent intent=new Intent(CustomerEditDelete.this,auction.class);
+//                    startActivity(intent);
+//                }else{
+//                    Toast.makeText(CustomerEditDelete.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 
@@ -75,7 +75,7 @@ public class CustomerEditDelete extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(dbHelper.deleteCustomer(id)){
                                     Toast.makeText(CustomerEditDelete.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(CustomerEditDelete.this,auction.class);
+                                    Intent intent=new Intent(CustomerEditDelete.this, FriendList.class);
                                     startActivity(intent);
                                 }else {
                                     Toast.makeText(CustomerEditDelete.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
