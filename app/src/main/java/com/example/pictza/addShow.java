@@ -44,12 +44,6 @@ public class addShow extends AppCompatActivity {
         location_show=findViewById(R.id.up_location);
         date_show=findViewById(R.id.up_date);
         time_show=findViewById(R.id.up_time);
-
-
-
-
-
-
         add_showImage = findViewById(R.id.btn_showImg);
 
         add_showImage.setOnClickListener(new View.OnClickListener() {

@@ -214,5 +214,10 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+    <string-array name="genders_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Rather not say</item>
+    </string-array>
 
 </resources>

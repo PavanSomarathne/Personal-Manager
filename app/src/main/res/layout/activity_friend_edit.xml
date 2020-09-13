@@ -4,9 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".FriendEdit">
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="329dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="center"
+        android:text="Update Friend"
+        android:textColor="#222222"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    tools:context=".Main5Activity">
+    <ImageView
+        android:id="@+id/up_imageFriend"
+        android:layout_width="265dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginEnd="73dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186"
+        app:srcCompat="@drawable/showimage" />
 
+    <Button
+        android:id="@+id/btn_showImg"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:background="@drawable/showimage"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.327" />
 
     <EditText
         android:id="@+id/l_name"
@@ -71,7 +115,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239"
+        app:layout_constraintVertical_bias="0.446"
         tools:targetApi="o" />
 
     <EditText
@@ -80,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
 
-        android:layout_marginTop="416dp"
+        android:layout_marginTop="528dp"
         android:layout_marginEnd="24dp"
         android:autofillHints=""
         android:fontFamily="@font/poppins_light"
@@ -123,72 +167,43 @@
         tools:targetApi="o" />
 
     <Button
-        android:id="@+id/btn_Add"
-        android:layout_width="284dp"
+        android:id="@+id/btn_Remove"
+        android:layout_width="146dp"
         android:layout_height="45dp"
         android:layout_gravity="start"
-        android:layout_marginEnd="48dp"
-        android:background="@drawable/roundedbtn"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="227dp"
+        android:layout_marginBottom="37dp"
+        android:background="@drawable/rounded_button2"
         android:enabled="true"
         android:fontFamily="@font/poppins_light"
-        android:text="@string/addfrbtn"
-        android:textColor="#F8F5F5"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.797"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.315" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="329dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/poppins_light"
-        android:gravity="center"
-        android:text="@string/regFriend"
-        android:textColor="#222222"
-        android:textSize="24sp"
+        android:text="@string/remove1"
+        android:textColor="#252525"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintTop_toBottomOf="@+id/age" />
 
     <Button
-        android:id="@+id/btn_showImg"
-        android:layout_width="43dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="217dp"
-        android:layout_marginEnd="151dp"
-        android:background="@drawable/showimage"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age"
-        app:layout_constraintVertical_bias="0.108" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="161dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="37dp"
+        android:id="@+id/btn_Update"
+        android:layout_width="146dp"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="37dp"
+        android:background="@drawable/rounded_button"
+        android:enabled="true"
         android:fontFamily="@font/poppins_light"
-        android:text="@string/imageupload"
-        android:textColor="#1D1D1D"
-        android:textSize="16sp"
+        android:text="@string/edittt"
+        android:textColor="#252525"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintTop_toBottomOf="@+id/age" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

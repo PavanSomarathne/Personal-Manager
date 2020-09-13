@@ -13,33 +13,33 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pictza.Database.CustomerModel;
 import com.example.pictza.Database.DatabaseHelper;
+import com.example.pictza.Database.FriendModel;
 
 import java.util.ArrayList;
 
-public class auction extends AppCompatActivity {
+public class FriendList extends AppCompatActivity {
 
     TableLayout table_tb;
     SearchView sv_search;
     private DatabaseHelper dbHelper;
-    private ArrayList<CustomerModel> customerModelArrylist;
+    private ArrayList<FriendModel> friendModelArrylist;
 
 
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auction);
+        setContentView(R.layout.activity_friend_list);
         dbHelper=new DatabaseHelper(this);
-        customerModelArrylist=dbHelper.getAllCustomers();
+        friendModelArrylist=dbHelper.getAllFriends();
 
         sv_search=findViewById(R.id.view_painting_search1);
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(auction.this,auctionAdd.class);
-                intent.putExtra("customer_name",sv_search.getQuery().toString());
+                Intent intent=new Intent(FriendList.this,FriendListSearch.class);
+                intent.putExtra("friend_name",sv_search.getQuery().toString());
                 startActivity(intent);
 
                 return true;
@@ -57,34 +57,34 @@ public class auction extends AppCompatActivity {
         table_tb=findViewById(R.id.view_table);
         //TableLayout table = (TableLayout) findViewById(R.id.view_table);
         table_tb.setStretchAllColumns(true);
-        if(customerModelArrylist!=null) {
-            for (int i = 0; i < customerModelArrylist.size(); i++) {
+        if(friendModelArrylist!=null) {
+            for (int i = 0; i < friendModelArrylist.size(); i++) {
 
 
                 TableRow row = new TableRow(this);
                 row.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                final String id = Integer.toString(customerModelArrylist.get(i).getId());
-                String username = customerModelArrylist.get(i).getUsername();
-                String email = customerModelArrylist.get(i).getEmail();
-                String password = customerModelArrylist.get(i).getPassword();
+                final String id = Integer.toString(friendModelArrylist.get(i).getFid());
+                String fName = friendModelArrylist.get(i).getfName();
+                String lName = friendModelArrylist.get(i).getlName();
+                String gender = friendModelArrylist.get(i).getGender();
 
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(auction.this, CustomerEditDelete.class);
-                        intent.putExtra("customer_id", id);
+                        Intent intent = new Intent(FriendList.this, FriendEdit.class);
+                        intent.putExtra("friend_id", id);
                         startActivity(intent);
                     }
                 });
 
                 TextView tvid = new TextView(this);
-                tvid.setText("    " + id);
+                tvid.setText("    " + fName);
                 tvid.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
                 TextView tvname = new TextView(this);
-                tvname.setText("" + username);
+                tvname.setText("" + lName);
                 tvname.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
                 TextView tvemail = new TextView(this);
-                tvemail.setText("" + email);
+                tvemail.setText("" + gender);
                 tvemail.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
 
 
@@ -100,7 +100,7 @@ public class auction extends AppCompatActivity {
             TableRow rowMsg = new TableRow(this);
             rowMsg.setBackgroundColor(Color.parseColor("#FFFFFF"));
             TextView tvmsg = new TextView(this);
-            tvmsg.setText("No Customers");
+            tvmsg.setText("No Friends");
             tvmsg.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
             tvmsg.setGravity(Gravity.CENTER);
             rowMsg.addView(tvmsg);
