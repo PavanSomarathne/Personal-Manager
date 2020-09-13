@@ -13,6 +13,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.pictza.Database.DatabaseHelper;
+import com.example.pictza.Database.EventModel;
 import com.example.pictza.Database.PaintingModel;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class PaintingSearch extends AppCompatActivity {
     TableLayout tb_search;
     SearchView sv_search;
     private DatabaseHelper dbHelper;
-    private ArrayList<PaintingModel> paintingModelArrylist;
+    private ArrayList<EventModel> eventModelArrylist;
 
 
     @Override
@@ -33,7 +34,7 @@ public class PaintingSearch extends AppCompatActivity {
 
         dbHelper=new DatabaseHelper(this);
         String p_title=getIntent().getStringExtra("painting_title");
-        paintingModelArrylist=dbHelper.searchPainting(p_title);
+        eventModelArrylist=dbHelper.searchEvent(p_title);
 
         sv_search=findViewById(R.id.view_drug_search2);
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -53,51 +54,61 @@ public class PaintingSearch extends AppCompatActivity {
         tb_search=findViewById(R.id.view_table);
         //TableLayout table = (TableLayout) findViewById(R.id.view_table);
         tb_search.setStretchAllColumns(true);
-        if(paintingModelArrylist!=null) {
-            for(int i=0;i<paintingModelArrylist.size();i++)
-            {
-                TableRow row=new TableRow(this);
+        if(eventModelArrylist!=null) {
+            for (int i = 0; i < eventModelArrylist.size(); i++) {
 
+
+                TableRow row = new TableRow(this);
                 row.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                final String pid =Integer.toString(paintingModelArrylist.get(i).getPid());
-                String title=paintingModelArrylist.get(i).getTitle();
-                String category=paintingModelArrylist.get(i).getCategory();
-                String description=paintingModelArrylist.get(i).getDescription();
-                String price=paintingModelArrylist.get(i).getPrice();
+                final String eventid = Integer.toString(eventModelArrylist.get(i).getEventId());
+                String eventName  = eventModelArrylist.get(i).getEventName();
+                String eventDate = eventModelArrylist.get(i).getDate();
+                String eventTime = eventModelArrylist.get(i).getTime();
+                String eventLocation = eventModelArrylist.get(i).getLocation_event();
 
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent(PaintingSearch.this,PaintingEdit.class);
-                        intent.putExtra("painting_id",pid);
+                        Intent intent = new Intent(PaintingSearch.this, PaintingEdit.class);
+                        intent.putExtra("event_id", eventid);
                         startActivity(intent);
                     }
                 });
 
-                TextView tvid=new TextView(this);
-                tvid.setText("    "+pid);
-                tvid.setTextAppearance(getApplicationContext(),R.style.table_row_tView1);
-                TextView tvname=new TextView(this);
-                tvname.setText(""+title);
-                tvname.setTextAppearance(getApplicationContext(),R.style.table_row_tView2);
-                TextView tvemail=new TextView(this);
-                tvemail.setText(""+price);
-                tvemail.setTextAppearance(getApplicationContext(),R.style.table_row_tView3);
 
-                row.addView(tvid);
-                row.addView(tvname);
-                row.addView(tvemail);
+
+                TextView tveventName = new TextView(this);
+                tveventName.setText("" + eventName);
+                tveventName.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
+
+                TextView tveventDate = new TextView(this);
+                tveventDate.setText("" + eventDate);
+                tveventDate.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
+
+                TextView tveventTime = new TextView(this);
+                tveventTime.setText("" + eventTime);
+                tveventTime.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
+
+
+
+                row.setBottom(2);
+
+
+                row.addView(tveventName);
+                row.addView(tveventDate);
+                row.addView(tveventTime);
+
                 tb_search.addView(row);
             }
         }else{
-            TableRow row = new TableRow(this);
-            row.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            TextView tvid = new TextView(this);
-            tvid.setText("No Paintings");
-            tvid.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
-            tvid.setGravity(Gravity.CENTER);
-            row.addView(tvid);
-            tb_search.addView(row);
+            TableRow rowMsg = new TableRow(this);
+            rowMsg.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            TextView tvmsg = new TextView(this);
+            tvmsg.setText("No Paintings");
+            tvmsg.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
+            tvmsg.setGravity(Gravity.CENTER);
+            rowMsg.addView(tvmsg);
+            tb_search.addView(rowMsg);
         }
     }
 }

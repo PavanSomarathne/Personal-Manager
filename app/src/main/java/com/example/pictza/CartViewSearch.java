@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.pictza.Database.CartModel;
 import com.example.pictza.Database.DatabaseHelper;
+import com.example.pictza.Database.TODOModel;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class CartViewSearch extends AppCompatActivity {
     TableLayout tb_search;
     SearchView sv_search;
     private DatabaseHelper dbHelper;
-    private ArrayList<CartModel> cartModelArrylist;
+    private ArrayList<TODOModel> todoModelArrayList;
 
 
     @Override
@@ -34,7 +35,7 @@ public class CartViewSearch extends AppCompatActivity {
 
         dbHelper=new DatabaseHelper(this);
         String i_title=getIntent().getStringExtra("item_title");
-        cartModelArrylist=dbHelper.searchItem(i_title);
+        todoModelArrayList=dbHelper.searchTodo(i_title);
 
         sv_search=findViewById(R.id.view_drug_search2);
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -54,50 +55,57 @@ public class CartViewSearch extends AppCompatActivity {
         tb_search=findViewById(R.id.view_table);
         //TableLayout table = (TableLayout) findViewById(R.id.view_table);
         tb_search.setStretchAllColumns(true);
-        if(cartModelArrylist!=null) {
-            for(int i=0;i<cartModelArrylist.size();i++)
-            {
-                TableRow row=new TableRow(this);
+        if( todoModelArrayList!=null) {
+            for (int i = 0; i <  todoModelArrayList.size(); i++) {
 
+
+                TableRow row = new TableRow(this);
                 row.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                final String cid =Integer.toString(cartModelArrylist.get(i).getCid());
-                String title=cartModelArrylist.get(i).getItemTitle();
-                String price=cartModelArrylist.get(i).getItemPrice();
-                String quantity=cartModelArrylist.get(i).getItemQuantity();
+                final String todoid = Integer.toString( todoModelArrayList.get(i).getTodoId());
+                String task  =  todoModelArrayList.get(i).getTask();
+                String location =  todoModelArrayList.get(i).getLocation();
+                String status =  todoModelArrayList.get(i).getStatus();
 
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent(CartViewSearch.this,CartEdit.class);
-                        intent.putExtra("item_id",cid);
+                        Intent intent = new Intent(CartViewSearch.this, CartEdit.class);
+                        intent.putExtra("todo_id", todoid);
                         startActivity(intent);
                     }
                 });
 
-                TextView tvid=new TextView(this);
-                tvid.setText("    "+cid);
-                tvid.setTextAppearance(getApplicationContext(),R.style.table_row_tView1);
-                TextView tvname=new TextView(this);
-                tvname.setText(""+title);
-                tvname.setTextAppearance(getApplicationContext(),R.style.table_row_tView2);
-                TextView tvemail=new TextView(this);
-                tvemail.setText(""+quantity);
-                tvemail.setTextAppearance(getApplicationContext(),R.style.table_row_tView3);
+                TextView tvid = new TextView(this);
+                tvid.setText("    " + todoid);
+                tvid.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
+                TextView tvtask = new TextView(this);
+                tvtask.setText("" + task);
+                tvtask.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
+                TextView tvlocation = new TextView(this);
+                tvlocation.setText("" + location);
+                tvlocation.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
+                TextView tvstatus = new TextView(this);
+                tvstatus.setText("" + status);
+                tvstatus.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
+
+
+                row.setBottom(2);
 
                 row.addView(tvid);
-                row.addView(tvname);
-                row.addView(tvemail);
+                row.addView(tvtask);
+                row.addView(tvlocation);
+                row.addView(tvstatus);
                 tb_search.addView(row);
             }
         }else{
-            TableRow row = new TableRow(this);
-            row.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            TextView tvid = new TextView(this);
-            tvid.setText("No Items");
-            tvid.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
-            tvid.setGravity(Gravity.CENTER);
-            row.addView(tvid);
-            tb_search.addView(row);
+            TableRow rowMsg = new TableRow(this);
+            rowMsg.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            TextView tvmsg = new TextView(this);
+            tvmsg.setText("No Items in Cart");
+            tvmsg.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
+            tvmsg.setGravity(Gravity.CENTER);
+            rowMsg.addView(tvmsg);
+            tb_search.addView(rowMsg);
         }
     }
 

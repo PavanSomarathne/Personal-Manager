@@ -397,6 +397,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+    public ArrayList<TODOModel>  searchTodo(String task) {
+        // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
+        ArrayList<TODOModel> todoModels = null;
+
+        try {
+
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + TABLE_TODO + " WHERE " + KEY_TASK + " LIKE ?", new String[] { "%" + task + "%" });
+
+            // looping through all rows and adding to list
+            if (c.moveToFirst()) {
+                todoModels = new ArrayList<TODOModel>();
+                do {
+                    TODOModel todoModel = new TODOModel();
+                    todoModel.setTodoId(c.getInt(c.getColumnIndex(KEY_TODOID)));
+                    todoModel.setTask(c.getString(c.getColumnIndex(KEY_TASK)));
+                    todoModel.setLocation(c.getString(c.getColumnIndex(KEY_LOCATION)));
+                    todoModel.setStatus(c.getString(c.getColumnIndex(KEY_STATUS)));
+                    // adding to customer list
+                    todoModels.add(todoModel);
+                } while (c.moveToNext());
+            }
+        }catch(Exception e) {
+            todoModels = null;
+        }
+        return todoModels;
+    }
+
+
 
 //ADD Event Section Start
     public Boolean addEvent(String eventName,String date,String time,String location_event) {
@@ -505,6 +534,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
 
+    }
+
+
+    public ArrayList<EventModel>  searchEvent(String eventName) {
+        // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
+        ArrayList<EventModel> eventmodels = null;
+
+        try {
+
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + TABLE_EVENT + " WHERE " + KEY_EVENTNAME + " LIKE ?", new String[] { "%" + eventName + "%" });
+
+            // looping through all rows and adding to list
+            if (c.moveToFirst()) {
+                eventmodels = new ArrayList<EventModel>();
+                do {
+                    EventModel eventModel=new EventModel();
+                    eventModel.setEventId(c.getInt(c.getColumnIndex(KEY_EVENTID)));
+                    eventModel.setEventName(c.getString(c.getColumnIndex(KEY_EVENTNAME)));
+                    eventModel.setDate(c.getString(c.getColumnIndex(KEY_EVENTDATE)));
+                    eventModel.setTime(c.getString(c.getColumnIndex(KEY_EVENTTIME)));
+                    eventModel.setLocation_event(c.getString(c.getColumnIndex(KEY_LOCATION_EVENT)));
+
+                    eventmodels.add(eventModel);
+                } while (c.moveToNext());
+            }
+        }catch(Exception e) {
+            eventmodels = null;
+        }
+        return eventmodels;
     }
 
 
