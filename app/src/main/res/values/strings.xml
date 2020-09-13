@@ -167,6 +167,7 @@
     <string name="category">Location</string>
     <string name="des">Time</string>
     <string name="price">Staus</string>
+    <string name="locationevent">Location</string>
 
     <string name="auc">Auction</string>
     <string name="Sell">Sell it Now</string>

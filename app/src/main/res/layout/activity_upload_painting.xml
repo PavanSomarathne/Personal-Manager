@@ -24,22 +24,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />--><![CDATA[
-
-    -->
-
-
-
-    ]]>
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
-        android:id="@+id/update_painting"
+        android:id="@+id/addevent"
         android:layout_width="270dp"
         android:layout_height="61dp"
         android:layout_gravity="start"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="71dp"
-        android:layout_marginBottom="66dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/rounded_button"
         android:enabled="true"
         android:fontFamily="@font/poppins_light"
@@ -61,7 +55,7 @@
         android:layout_gravity="start"
         android:layout_marginStart="141dp"
         android:layout_marginEnd="142dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="120dp"
         android:background="@drawable/roundedbtn"
         android:enabled="true"
         android:fontFamily="@font/poppins_light"
@@ -74,7 +68,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update_painting"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.194"
+
+        />
 
     <TextView
         android:id="@+id/textView54"
@@ -106,7 +102,7 @@
         android:layout_marginEnd="294dp"
         android:layout_marginBottom="566dp"
         android:fontFamily="@font/poppins_light"
-        android:text="@string/title"
+        android:text="@string/title2"
         android:textColor="#1F1F1F"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -125,7 +121,7 @@
         android:layout_marginEnd="282dp"
         android:layout_marginBottom="494dp"
         android:fontFamily="@font/poppins_light"
-        android:text="@string/category"
+        android:text="@string/date"
         android:textColor="#1F1F1F"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -163,7 +159,7 @@
         android:layout_marginEnd="291dp"
         android:layout_marginBottom="255dp"
         android:fontFamily="@font/poppins_light"
-        android:text="@string/price"
+        android:text="@string/locationevent"
         android:textColor="#1F1F1F"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -175,9 +171,9 @@
         app:layout_constraintVertical_bias="0.269" />
 
     <EditText
-        android:id="@+id/title_up"
-        android:layout_width="216dp"
-        android:layout_height="48dp"
+        android:id="@+id/eventname"
+        android:layout_width="206dp"
+        android:layout_height="55dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="117dp"
         android:layout_marginEnd="45dp"
@@ -195,16 +191,16 @@
 
 
     <EditText
-        android:id="@+id/price_paint_up"
-        android:layout_width="215dp"
-        android:layout_height="40dp"
+        android:id="@+id/locationevent"
+        android:layout_width="209dp"
+        android:layout_height="52dp"
         android:layout_marginStart="142dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="255dp"
+        android:layout_marginBottom="340dp"
         android:autofillHints=""
         android:ems="10"
         android:fontFamily="@font/poppins_light"
-        android:inputType="number"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -214,25 +210,25 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/description_paint_up"
+        android:id="@+id/time"
         android:layout_width="213dp"
         android:layout_height="54dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="412dp"
         android:ems="10"
         android:fontFamily="@font/poppins_light"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_paint_up"
         app:layout_constraintVertical_bias="0.205" />
 
     <EditText
-        android:id="@+id/category_paint_up"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="153dp"
@@ -240,7 +236,7 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="494dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

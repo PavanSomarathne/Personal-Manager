@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,67 +20,61 @@ import android.widget.Toast;
 import com.example.pictza.Database.CartModel;
 import com.example.pictza.Database.DatabaseHelper;
 import com.example.pictza.Database.PaintingModel;
+import com.example.pictza.Database.TODOModel;
 
 import java.util.ArrayList;
 
 public class CartEdit extends AppCompatActivity {
 
-    TextView upTitle,upCategory,upDescription, upPrice, upQuantity;
+
+    EditText edtask,edstatus,edlocation;
     Button btnUpdate,btnRemove;
-    String cid;
-    ImageView upPainting;
-    ArrayList<CartModel> cartArray;
+    String todoId;
+
+    ArrayList<TODOModel> todoArray;
     DatabaseHelper dbHelper=new DatabaseHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_edit);
 
-        upTitle=findViewById(R.id.title_paint_up);
-        upCategory=findViewById(R.id.category_paint_up);
-        upDescription=findViewById(R.id.description_paint_up);
-        upPrice=findViewById(R.id.price_paint_up);
+        edtask =findViewById(R.id.edtask);
+        edstatus = findViewById(R.id.edstatus);
+        edlocation = findViewById(R.id.edlocation);
 
 
-        btnUpdate=findViewById(R.id.update_painting);
-        btnRemove=findViewById(R.id.remove_painting);
 
 
-        cid=getIntent().getStringExtra("item_id");
-        cartArray= dbHelper.getItem(cid);
+        btnUpdate=findViewById(R.id.update_todo);
+        btnRemove=findViewById(R.id.remove_todo);
 
-        final int cid=cartArray.get(0).getCid();
-        String title=cartArray.get(0).getItemTitle();
-        String category=cartArray.get(0).getItemCategory();
-        String description=cartArray.get(0).getItemDescription();
-        String price=cartArray.get(0).getItemPrice();
-        String quantity=cartArray.get(0).getItemQuantity();
 
-        upTitle.setText(cartArray.get(0).getItemTitle());
-        upCategory.setText(""+category);
-        upDescription.setText(""+description);
-        upPrice.setText(""+price);
-        upQuantity.setText(""+quantity);
+        todoId =getIntent().getStringExtra("todo_id");
+        todoArray= dbHelper.getTODOtask(todoId);
 
-        final String new_title=upTitle.getText().toString();
-        final String new_category=upCategory.getText().toString();
-        final String new_description=upDescription.getText().toString();
-        final String new_price=upPrice.getText().toString();
-        final String new_quantity=upQuantity.getText().toString();
+        final int todoid =todoArray.get(0).getTodoId();
+        String task=todoArray.get(0).getTask();
+        String status=todoArray.get(0).getStatus();
+        String location=todoArray.get(0).getLocation();
 
-        Cursor cursor = dbHelper.getShowData("select * from painting");
 
-        while (cursor.moveToNext()){
-            byte[] painting = cursor.getBlob(5);
 
-            Bitmap bitmap = BitmapFactory.decodeByteArray(painting,0,painting.length);
-            upPainting.setImageBitmap(bitmap);
-        }
+        edtask.setText(""+task);
+        edstatus.setText(""+status);
+        edlocation.setText(""+location);
+
+
+ final String new_task = edtask.getText().toString();
+final String new_status = edstatus.getText().toString();
+final String new_location = edlocation.getText().toString();
+
+
+
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dbHelper.updateCart(cid, upTitle.getText().toString(),upCategory.getText().toString(), upDescription.getText().toString(),upPrice.getText().toString(), upQuantity.getText().toString())){
+                if(dbHelper.updateTODO(todoId, edtask.getText().toString(),edstatus.getText().toString(), edlocation.getText().toString())){
                     Toast.makeText(CartEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(CartEdit.this,CartView.class);
                     startActivity(intent);
@@ -97,7 +92,7 @@ public class CartEdit extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if(dbHelper.deleteItem(cid)){
+                                if(dbHelper.deleteTODO(todoId)){
                                     Toast.makeText(CartEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(CartEdit.this,CartView.class);
                                     startActivity(intent);

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.pictza.Database.CartModel;
 import com.example.pictza.Database.DatabaseHelper;
+import com.example.pictza.Database.TODOModel;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class CartView extends AppCompatActivity {
     TableLayout table_tb;
     SearchView sv_search;
     private DatabaseHelper dbHelper;
-    private ArrayList<CartModel> cartModelArrylist;
+    private ArrayList<TODOModel> todoModelArrayList;
 
 
     @SuppressLint("NewApi")
@@ -32,7 +33,7 @@ public class CartView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_view);
         dbHelper=new DatabaseHelper(this);
-        cartModelArrylist=dbHelper.getAllItems();
+        todoModelArrayList=dbHelper.getTODOtasks();
 
         sv_search=findViewById(R.id.view_painting_search1);
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -57,43 +58,46 @@ public class CartView extends AppCompatActivity {
         table_tb=findViewById(R.id.view_table);
         //TableLayout table = (TableLayout) findViewById(R.id.view_table);
         table_tb.setStretchAllColumns(true);
-        if(cartModelArrylist!=null) {
-            for (int i = 0; i < cartModelArrylist.size(); i++) {
+        if( todoModelArrayList!=null) {
+            for (int i = 0; i <  todoModelArrayList.size(); i++) {
 
 
                 TableRow row = new TableRow(this);
                 row.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                final String cid = Integer.toString(cartModelArrylist.get(i).getCid());
-                String title = cartModelArrylist.get(i).getItemTitle();
-                String price = cartModelArrylist.get(i).getItemPrice();
-                String quantity = cartModelArrylist.get(i).getItemQuantity();
+                final String todoid = Integer.toString( todoModelArrayList.get(i).getTodoId());
+                String task  =  todoModelArrayList.get(i).getTask();
+                String location =  todoModelArrayList.get(i).getLocation();
+                String status =  todoModelArrayList.get(i).getStatus();
 
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(CartView.this, CartEdit.class);
-                        intent.putExtra("item_id", cid);
+                        intent.putExtra("todo_id", todoid);
                         startActivity(intent);
                     }
                 });
 
                 TextView tvid = new TextView(this);
-                tvid.setText("    " + cid);
+                tvid.setText("    " + todoid);
                 tvid.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
-                TextView tvname = new TextView(this);
-                tvname.setText("" + title);
-                tvname.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
-                TextView tvemail = new TextView(this);
-                tvemail.setText("" + quantity);
-                tvemail.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
-
+                TextView tvtask = new TextView(this);
+                tvtask.setText("" + task);
+                tvtask.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
+                TextView tvlocation = new TextView(this);
+                tvlocation.setText("" + location);
+                tvlocation.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
+                TextView tvstatus = new TextView(this);
+                tvstatus.setText("" + status);
+                tvstatus.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
 
 
                 row.setBottom(2);
 
                 row.addView(tvid);
-                row.addView(tvname);
-                row.addView(tvemail);
+                row.addView(tvtask);
+                row.addView(tvlocation);
+                row.addView(tvstatus);
                 table_tb.addView(row);
             }
         }else{

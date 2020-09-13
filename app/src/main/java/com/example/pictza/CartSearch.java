@@ -29,8 +29,7 @@ public class CartSearch extends AppCompatActivity {
     EditText  task,status,location;
     Button btnAdd;
     String pid;
-    ImageView upPainting;
-    ArrayList<PaintingModel> paintingArray;
+
     DatabaseHelper dbHelper=new DatabaseHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,58 +39,23 @@ public class CartSearch extends AppCompatActivity {
         task =findViewById(R.id.task);
         status = findViewById(R.id.status);
         location = findViewById(R.id.location);
-
-/*
-        upTitle=findViewById(R.id.title_paint_up);
-        upCategory=findViewById(R.id.category_paint_up);
-        upDescription=findViewById(R.id.description_paint_up);
-        upPrice=findViewById(R.id.price_paint_up);
-    
-
-        btnAdd=findViewById(R.id.update_painting);
+        btnAdd=findViewById(R.id.add_todo);
 
 
 
-        pid=getIntent().getStringExtra("painting_id");
-        paintingArray= dbHelper.getPainting(pid);
 
-        final int pid=paintingArray.get(0).getPid();
-        String title=paintingArray.get(0).getTitle();
-        String category=paintingArray.get(0).getCategory();
-        String description=paintingArray.get(0).getDescription();
-        String price=paintingArray.get(0).getPrice();
-
-        upTitle.setText(paintingArray.get(0).getTitle());
-        upCategory.setText(""+category);
-        upDescription.setText(""+description);
-        upPrice.setText(""+price);
-
-        Cursor cursor = dbHelper.getShowData("select * from painting");
-
-        while (cursor.moveToNext()){
-            byte[] painting = cursor.getBlob(5);
-
-            Bitmap bitmap = BitmapFactory.decodeByteArray(painting,0,painting.length);
-            upPainting.setImageBitmap(bitmap);
-        }
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String et_item_title=upTitle.getText().toString();
-                String et_item_category=upCategory.getText().toString();
-                String et_item_description=upDescription.getText().toString();
-                String et_item_price=upPrice.getText().toString();
-                String et_item_quantity=upQuantity.getText().toString();
+                String et_task=task.getText().toString();
+                String et_location=location.getText().toString();
+                String et_status=status.getText().toString();
 
 
-                if(et_item_title.equals("")|| et_item_category.equals("")|| et_item_description.equals("")|| et_item_price.equals("")|| et_item_quantity.equals("")){
-                    Toast.makeText(CartSearch.this,"Please Enter the Item Quantity",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(dbHelper.addCart(et_item_title, et_item_category, et_item_description, et_item_price, et_item_quantity)){
+                if(dbHelper.addTODO(et_task, et_location, et_status)){
 
-                    Toast.makeText(CartSearch.this,"Successfully Added Item to the Cart",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartSearch.this,"Successfully Added",Toast.LENGTH_SHORT).show();
 
 
                 }else {
@@ -100,8 +64,10 @@ public class CartSearch extends AppCompatActivity {
 
             }
         });
-*/
+
     }
+
+
 
     public void back(View view){
 

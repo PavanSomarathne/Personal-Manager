@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static String DATABASE_NAME="PictzaDB";
+    public static String DATABASE_NAME="MyAssistantDB";
     //private static final int DATABASE_VERSION = 4;
 
     private static final String TABLE_CUSTOMER = "customer";
@@ -19,6 +19,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CUSTOMERUSERNAME = "username";
     private static final String KEY_CUSTOMEREMAIL = "email";
     private static final String KEY_CUSTOMERPASSWORD = "password";
+
+    private static final String TABLE_TODO = "todo";
+    private static final String KEY_TODOID = "todoId";
+    private static final String KEY_TASK = "task";
+    private static final String KEY_LOCATION = "location";
+    private static final String KEY_STATUS = "status";
+
 
 
     private static final String TABLE_SHOW = "show";
@@ -56,6 +63,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_CART = "CREATE TABLE " + TABLE_CART + "(" + KEY_ITEMID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_ITEMTITLE + " TEXT, "+ KEY_ITEMCATEGORY + " TEXT, "+ KEY_ITEMDESCRIPTION + " TEXT, "+ KEY_ITEMPRICE + " TEXT, "+ KEY_ITEMQUANTITY + " TEXT);";
 
+
+    private static final String CREATE_TABLE_TODO = "CREATE TABLE " + TABLE_TODO + "(" + KEY_TODOID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_TASK + " TEXT, "+ KEY_LOCATION + " TEXT, "+ KEY_STATUS + " TEXT);";
+
+
+
+
     public DatabaseHelper(Context context) {
         super(context,DATABASE_NAME,null,1);
     }
@@ -66,6 +79,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_SHOW);
         db.execSQL(CREATE_TABLE_PAINTING);
         db.execSQL(CREATE_TABLE_CART);
+        db.execSQL(CREATE_TABLE_TODO);
+
     }
 
     @Override
@@ -95,12 +110,126 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public Boolean addTODO(String task, String location, String status) {
+        SQLiteDatabase db = getWritableDatabase();
+        // Creating content values
+        ContentValues values = new ContentValues();
+        values.put(KEY_TASK,task);
+        values.put(KEY_LOCATION, location);
+        values.put(KEY_STATUS, status);
+
+        // insert row in table
+        long insert = db.insert(TABLE_TODO, null, values);
+
+        if(insert>=1){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    public ArrayList<TODOModel> getTODOtasks() {
+        // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
+        ArrayList<TODOModel> todoModelArrayList = null;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_TODO,null);
+
+
+//        String selectQuery = "SELECT  * FROM " + TABLE_CUSTOMER;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            todoModelArrayList = new ArrayList<TODOModel>();
+            do {
+                TODOModel todoModel = new TODOModel();
+                todoModel.setTodoId(c.getInt(c.getColumnIndex(KEY_TODOID)));
+                todoModel.setTask(c.getString(c.getColumnIndex(KEY_TASK)));
+                todoModel.setLocation(c.getString(c.getColumnIndex(KEY_LOCATION)));
+                todoModel.setStatus(c.getString(c.getColumnIndex(KEY_STATUS)));
+
+                // adding to customer list
+                todoModelArrayList.add(todoModel);
+            } while (c.moveToNext());
+        }
+        return todoModelArrayList;
+
+    }
+
+
+    public ArrayList<TODOModel> getTODOtask(String id) {
+        // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
+        ArrayList<TODOModel> todoModelArrayList = null;
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c=db.rawQuery("SELECT * FROM "+TABLE_TODO+" WHERE "+KEY_TODOID+" = ?",new String[]{String.valueOf(id)});
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            todoModelArrayList = new ArrayList<TODOModel>();
+            do {
+                TODOModel todoModel = new TODOModel();
+                todoModel.setTodoId(c.getInt(c.getColumnIndex(KEY_TODOID)));
+                todoModel.setTask(c.getString(c.getColumnIndex(KEY_TASK)));
+                todoModel.setLocation(c.getString(c.getColumnIndex(KEY_LOCATION)));
+                todoModel.setStatus(c.getString(c.getColumnIndex(KEY_STATUS)));
+
+                // adding to customer list
+                todoModelArrayList.add(todoModel);
+            } while (c.moveToNext());
+        }
+        return todoModelArrayList;
+
+    }
+
+
+    public Boolean updateTODO(String tid, String task, String location, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Creating content values
+        ContentValues values = new ContentValues();
+        values.put(KEY_TASK,task);
+        values.put(KEY_LOCATION, location);
+        values.put(KEY_STATUS, status);
+
+        // update row in customer table base on customer.is value
+        //String args=Integer.toString(id);
+        int row=db.update(TABLE_TODO, values,KEY_TODOID + " = ?",new String[]{String.valueOf(tid)});
+        if(row>=1){
+            return true;
+        }else {
+            return false;
+        }
+
+
+    }
+
+    public Boolean deleteTODO(String tid) {
+
+        // delete row in customer table based on id
+        SQLiteDatabase db = this.getWritableDatabase();
+        int row=db.delete(TABLE_TODO, KEY_TODOID + " = ?",
+                new String[]{String.valueOf(tid)});
+
+        if(row>=1){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
     public ArrayList<CustomerModel> getAllCustomers() {
         // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
         ArrayList<CustomerModel> customerModelArrayList = null;
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_CUSTOMER,null);
+
 
 
 //        String selectQuery = "SELECT  * FROM " + TABLE_CUSTOMER;
@@ -182,6 +311,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
 
     public ArrayList<CustomerModel> searchCustomer(String customer) {
         // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
@@ -672,7 +802,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Boolean updateCart(int cid, String itemTitle, String itemCategory, String itemDescription, String itemPrice, String itemQuantity) {
+   /* public Boolean updateCart(String itemTitle, String itemCategory, String itemDescription, String itemPrice) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Creating content values
@@ -693,7 +823,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
 
-    }
+    }*/
 
 
     public Boolean deleteItem(int cid) {
