@@ -66,7 +66,7 @@ public class auctionAdd extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent(auctionAdd.this,CustomerEditDelete.class);
+                        Intent intent=new Intent(auctionAdd.this, FriendEditDelete.class);
                         intent.putExtra("customer_id",id);
                         startActivity(intent);
                     }

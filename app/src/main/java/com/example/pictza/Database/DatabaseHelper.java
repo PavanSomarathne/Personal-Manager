@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static String DATABASE_NAME="PictzaDB";
+    public static String DATABASE_NAME="MyAssistantDB";
     //private static final int DATABASE_VERSION = 4;
 
     private static final String TABLE_CUSTOMER = "customer";
@@ -19,6 +19,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CUSTOMERUSERNAME = "username";
     private static final String KEY_CUSTOMEREMAIL = "email";
     private static final String KEY_CUSTOMERPASSWORD = "password";
+
+    private static final String TABLE_FRIEND = "friend";
+    private static final String KEY_FRIENDID = "fid";
+    private static final String KEY_FRIENDFNAME = "fName";
+    private static final String KEY_FRIENDLNAME = "lName";
+    private static final String KEY_FRIENDGENDER = "gender";
+    private static final String KEY_FRIENDAGE = "age";
+    private static final String KEY_FRIENDADDRESS = "address";
+    private static final String KEY_FRIENDIMAGE = "image";
 
 
     private static final String TABLE_SHOW = "show";
@@ -47,8 +56,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_ITEMPRICE = "itemPrice";
     private static final String KEY_ITEMQUANTITY = "itemQuantity";
 
-
     private static final String CREATE_TABLE_CUSTOMER = "CREATE TABLE " + TABLE_CUSTOMER + "(" + KEY_CUSTOMERID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_CUSTOMERUSERNAME + " TEXT, "+ KEY_CUSTOMEREMAIL + " TEXT, "+ KEY_CUSTOMERPASSWORD + " TEXT);";
+
+    private static final String CREATE_TABLE_FRIEND= "CREATE TABLE " + TABLE_FRIEND + "(" + KEY_FRIENDID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_FRIENDFNAME + " TEXT, "+ KEY_FRIENDLNAME + " TEXT, "+ KEY_FRIENDGENDER + " TEXT, "+ KEY_FRIENDAGE+ " INTEGER, "+ KEY_FRIENDADDRESS + " TEXT, "+ KEY_FRIENDIMAGE + " BLOB);";
 
     private static final String CREATE_TABLE_SHOW = "CREATE TABLE " + TABLE_SHOW + "(" + KEY_SHOWID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_SHOWLOCATION + " TEXT, "+ KEY_SHOWDATE + " TEXT, "+ KEY_SHOWTIME + " TEXT, "+ KEY_SHOWDESCRIPTION + " TEXT, "+ KEY_SHOWIMAGE + " BLOB);";
 
@@ -63,6 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_CUSTOMER);
+        db.execSQL(CREATE_TABLE_FRIEND);
         db.execSQL(CREATE_TABLE_SHOW);
         db.execSQL(CREATE_TABLE_PAINTING);
         db.execSQL(CREATE_TABLE_CART);
@@ -72,6 +83,162 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int old, int i1) {
 
     }
+
+
+    //Friend Section Start
+
+    public Boolean addFriend(String fName, String lName, String Gender,Integer age,String address,String imgPath ) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            FileInputStream fs = new FileInputStream(imgPath);
+            byte[] imgbyte = new byte[fs.available()];
+            fs.read(imgbyte);
+
+        // Creating content values
+        ContentValues values = new ContentValues();
+        values.put(KEY_FRIENDFNAME, fName);
+        values.put(KEY_FRIENDLNAME, lName);
+        values.put(KEY_FRIENDGENDER, Gender);
+        values.put(KEY_FRIENDAGE, age);
+        values.put(KEY_FRIENDADDRESS, address);
+        values.put(KEY_FRIENDIMAGE, imgbyte);
+
+        // insert row in friend table
+        long insert = db.insert(TABLE_FRIEND, null, values);
+
+        if(insert>=1){
+            return true;
+        }else {
+            return false;
+        }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public ArrayList<FriendModel> getAllFriends() {
+        // ArrayList<CustomerModel> customerModelArrayList = new ArrayList<CustomerModel>();
+        ArrayList<FriendModel> friendModelArrayList = null;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_FRIEND,null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            friendModelArrayList = new ArrayList<FriendModel>();
+            do {
+                FriendModel friendModel = new FriendModel();
+                friendModel.setFid(c.getInt(c.getColumnIndex(KEY_FRIENDID)));
+                friendModel.setfName(c.getString(c.getColumnIndex(KEY_FRIENDFNAME)));
+                friendModel.setlName(c.getString(c.getColumnIndex(KEY_FRIENDLNAME)));
+                friendModel.setGender(c.getString(c.getColumnIndex(KEY_FRIENDGENDER)));
+
+                // adding to customer list
+                friendModelArrayList.add(friendModel);
+            } while (c.moveToNext());
+        }
+        return friendModelArrayList;
+
+    }
+    public ArrayList<FriendModel> getFriend(String id){
+
+        ArrayList<FriendModel> friendsArray = null;
+        SQLiteDatabase db=getReadableDatabase();
+        String[] args={id};
+        Cursor c=db.rawQuery("SELECT * FROM "+TABLE_FRIEND+" WHERE "+KEY_FRIENDID+" = ?",args);
+        if(c.moveToFirst()){
+            friendsArray=new ArrayList<FriendModel>();
+            do{
+                FriendModel friendMod=new FriendModel();
+                friendMod.setFid(c.getInt(c.getColumnIndex(KEY_FRIENDID)));
+                friendMod.setfName(c.getString(c.getColumnIndex(KEY_FRIENDFNAME)));
+                friendMod.setlName(c.getString(c.getColumnIndex(KEY_FRIENDLNAME)));
+                friendMod.setGender(c.getString(c.getColumnIndex(KEY_FRIENDGENDER)));
+                friendMod.setAge(c.getInt(c.getColumnIndex(KEY_FRIENDAGE)));
+                friendMod.setAddress(c.getString(c.getColumnIndex(KEY_FRIENDADDRESS)));
+                friendMod.setImage(c.getBlob(c.getColumnIndex(KEY_FRIENDIMAGE)));
+
+                friendsArray.add(friendMod);
+
+            }while (c.moveToNext());
+        }
+        return friendsArray;
+
+    }
+    public Boolean updateFriend(int id,String fName, String lName, String Gender,Integer age,String address,byte[] imgPath) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+//            FileInputStream fs = new FileInputStream(imgPath);
+//            byte[] imgbyte = new byte[fs.available()];
+//            fs.read(imgbyte);
+        // Creating content values
+        ContentValues values = new ContentValues();
+        values.put(KEY_FRIENDFNAME, fName);
+        values.put(KEY_FRIENDLNAME, lName);
+        values.put(KEY_FRIENDGENDER, Gender);
+        values.put(KEY_FRIENDAGE, age);
+        values.put(KEY_FRIENDADDRESS, address);
+        values.put(KEY_FRIENDIMAGE, imgPath);
+
+        // update row in customer table base on customer.is value
+        int row=db.update(TABLE_FRIEND, values,KEY_FRIENDID + " = ?",new String[]{String.valueOf(id)});
+        if(row>=1){
+            return true;
+        }else {
+            return false;
+        }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public Boolean deleteFriend(int id) {
+
+        // delete row in customer table based on id
+        SQLiteDatabase db = this.getWritableDatabase();
+        int row=db.delete(TABLE_FRIEND, KEY_FRIENDID + " = ?", new String[]{String.valueOf(id)});
+
+        if(row>=1){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    public ArrayList<FriendModel> searchFriend(String friend) {
+
+        ArrayList<FriendModel> friendsArray = null;
+
+        try {
+
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + TABLE_FRIEND + " WHERE " + KEY_FRIENDFNAME + " LIKE ?", new String[] { "%" + friend + "%" });
+
+            // looping through all rows and adding to list
+            if(c.moveToFirst()){
+                friendsArray=new ArrayList<FriendModel>();
+                do{
+                    FriendModel friendMod=new FriendModel();
+                    friendMod.setFid(c.getInt(c.getColumnIndex(KEY_FRIENDID)));
+                    friendMod.setfName(c.getString(c.getColumnIndex(KEY_FRIENDFNAME)));
+                    friendMod.setlName(c.getString(c.getColumnIndex(KEY_FRIENDLNAME)));
+                    friendMod.setGender(c.getString(c.getColumnIndex(KEY_FRIENDGENDER)));
+                    friendMod.setAge(c.getInt(c.getColumnIndex(KEY_FRIENDAGE)));
+                    friendMod.setAddress(c.getString(c.getColumnIndex(KEY_FRIENDADDRESS)));
+                    friendMod.setImage(c.getBlob(c.getColumnIndex(KEY_FRIENDIMAGE)));
+
+                    friendsArray.add(friendMod);
+
+                }while (c.moveToNext());
+            }
+        }catch(Exception e) {
+            friendsArray = null;
+        }
+        return friendsArray;
+    }
+
 
 
     //Customer Section Start
@@ -101,11 +268,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_CUSTOMER,null);
-
-
-//        String selectQuery = "SELECT  * FROM " + TABLE_CUSTOMER;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
@@ -164,8 +326,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else {
             return false;
         }
-
-
     }
 
     public Boolean deleteCustomer(int id) {
@@ -192,10 +352,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = getReadableDatabase();
             Cursor c = db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER + " WHERE " + KEY_CUSTOMERUSERNAME + " LIKE ?", new String[] { "%" + customer + "%" });
 
-
-//        String selectQuery = "SELECT  * FROM " + TABLE_CUSTOMER;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor c = db.rawQuery(selectQuery, null);
             // looping through all rows and adding to list
             if (c.moveToFirst()) {
                 customerModels = new ArrayList<CustomerModel>();

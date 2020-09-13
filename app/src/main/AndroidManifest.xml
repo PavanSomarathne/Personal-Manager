@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddFriend"></activity>
+        <activity android:name=".FriendListSearch"></activity>
+        <activity android:name=".FriendEdit" />
+        <activity android:name=".AddFriend" />
         <activity android:name=".CartEdit" />
         <activity android:name=".CartViewSearch" />
         <activity android:name=".CartView" />
@@ -25,30 +27,30 @@
         <activity android:name=".PaintingSearch" />
         <activity android:name=".PaintingEdit" />
         <activity android:name=".paintings" />
-        <activity android:name=".CustomerEditDelete" />
+        <activity android:name=".FriendEditDelete" />
         <activity android:name=".payment" />
         <activity android:name=".bid" />
         <activity android:name=".search" />
         <activity android:name=".ManagePainting" />
         <activity android:name=".UploadPainting" />
         <activity android:name=".auctionAdd" />
-        <activity android:name=".addToAuctionOr" />
+        <activity android:name=".ManageFriends" />
         <activity android:name=".viewOrEdit" />
         <activity android:name=".profileArtist" />
         <activity android:name=".manageShows" />
         <activity android:name=".addShow" />
         <activity android:name=".shows" />
         <activity android:name=".item" />
-        <activity android:name=".auction" />
+        <activity android:name=".FriendList" />
         <activity android:name=".cart" />
         <activity android:name=".Main5Activity" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            android:parentActivityName=".HomeActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.pictza.HomeActivity" />
+        <activity android:name=".LoginActivity">
+
+            <!-- android:label="@string/title_activity_login" -->
+            <!-- android:parentActivityName=".HomeActivity"> -->
+            <!-- <meta-data -->
+            <!-- android:name="android.support.PARENT_ACTIVITY" -->
+            <!-- android:value="com.example.pictza.HomeActivity" /> -->
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">

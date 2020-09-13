@@ -1,10 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FriendEdit">
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="329dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="center"
+        android:text="Update Friend"
+        android:textColor="#222222"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/up_imageFriend"
+        android:layout_width="265dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginEnd="73dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186"
+        app:srcCompat="@drawable/showimage" />
+
+    <Button
+        android:id="@+id/btn_showImg"
+        android:layout_width="43dp"
+        android:layout_height="37dp"
+        android:background="@drawable/showimage"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.327" />
+
+    <EditText
+        android:id="@+id/l_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+
+        android:layout_marginBottom="20dp"
+        android:autofillHints=""
+        android:fontFamily="@font/poppins_light"
+        android:hint="@string/lname"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:textColor="#222222"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/gender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:targetApi="o" />
+
+    <Spinner
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints=""
+        android:fontFamily="@font/poppins_light"
+        android:hint="@string/gender"
+
+        app:layout_constraintBottom_toTopOf="@+id/address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/f_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+
+        android:layout_marginBottom="24dp"
+        android:autofillHints=""
+        android:fontFamily="@font/poppins_light"
+        android:hint="@string/fname"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        android:textColor="#222222"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.446"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+
+        android:layout_marginTop="528dp"
+        android:layout_marginEnd="24dp"
+        android:autofillHints=""
+        android:fontFamily="@font/poppins_light"
+        android:hint="@string/age"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:textColor="#222222"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints=""
+        android:fontFamily="@font/poppins_light"
+        android:hint="@string/address"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:textColor="#222222"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:targetApi="o" />
+
+    <Button
+        android:id="@+id/btn_Remove"
+        android:layout_width="146dp"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="227dp"
+        android:layout_marginBottom="37dp"
+        android:background="@drawable/rounded_button2"
+        android:enabled="true"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/remove1"
+        android:textColor="#252525"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/age" />
+
+    <Button
+        android:id="@+id/btn_Update"
+        android:layout_width="146dp"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="37dp"
+        android:background="@drawable/rounded_button"
+        android:enabled="true"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/edittt"
+        android:textColor="#252525"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/age" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
