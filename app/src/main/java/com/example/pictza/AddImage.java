@@ -1,8 +1,6 @@
 package com.example.pictza;
 
 import android.Manifest;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -11,10 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.pictza.Database.DatabaseHelper;
-
-import java.util.Calendar;
 
 public class addShow extends AppCompatActivity {
 
@@ -140,7 +133,7 @@ public class addShow extends AppCompatActivity {
 
     public void home(View view){
 
-        Intent intent = new Intent(addShow.this, viewOrEdit.class);
+        Intent intent = new Intent(addShow.this, ManageGallery.class);
         startActivity(intent);
 
     }
