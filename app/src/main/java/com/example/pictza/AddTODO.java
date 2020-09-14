@@ -50,14 +50,28 @@ public class AddTODO extends AppCompatActivity {
                 String et_location=location.getText().toString();
                 String et_status=status.getSelectedItem().toString();
 
+                if(et_task.isEmpty()){
+                    Toast.makeText(AddTODO.this,"Enter Event Name",Toast.LENGTH_SHORT).show();
+                }
+                else if(et_location.isEmpty()){
+                    Toast.makeText(AddTODO.this,"Enter Location ",Toast.LENGTH_SHORT).show();
+                }
+                else if(et_status.isEmpty()){
+                    Toast.makeText(AddTODO.this,"Enter status",Toast.LENGTH_SHORT).show();
+                }
+                
+                else {
 
-                if(dbHelper.addTODO(et_task, et_location, et_status)){
 
-                    Toast.makeText(AddTODO.this,"Successfully Added",Toast.LENGTH_SHORT).show();
+                    if (dbHelper.addTODO(et_task, et_location, et_status)) {
+
+                        Toast.makeText(AddTODO.this, "Successfully Added", Toast.LENGTH_SHORT).show();
 
 
-                }else {
-                    Toast.makeText(AddTODO.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddTODO.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
             }

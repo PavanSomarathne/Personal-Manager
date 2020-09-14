@@ -48,6 +48,7 @@ public class AddEvent extends AppCompatActivity {
 
 
 
+
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,14 +81,29 @@ public class AddEvent extends AppCompatActivity {
                 String et_time=time.getText().toString();
                 String et_location=time.getText().toString();
 
+                if(et_eventname.isEmpty()){
+                    Toast.makeText(AddEvent.this,"Enter Event Name",Toast.LENGTH_SHORT).show();
+                }
+                else if(et_date.isEmpty()){
+                    Toast.makeText(AddEvent.this,"Enter event Date",Toast.LENGTH_SHORT).show();
+                }
+                else if(et_time.isEmpty()){
+                    Toast.makeText(AddEvent.this,"Enter event time",Toast.LENGTH_SHORT).show();
+                }
+                else if(et_location.isEmpty()){
+                    Toast.makeText(AddEvent.this,"Enter location event",Toast.LENGTH_SHORT).show();
+                }
+                else {
 
-               if(dbHelper.addEvent(et_eventname,et_date,et_time,et_location)){
 
-                    Toast.makeText(AddEvent.this,"Successfully Added",Toast.LENGTH_SHORT).show();
+                    if (dbHelper.addEvent(et_eventname, et_date, et_time, et_location)) {
+
+                        Toast.makeText(AddEvent.this, "Successfully Added", Toast.LENGTH_SHORT).show();
 
 
-                }else {
-                    Toast.makeText(AddEvent.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddEvent.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
