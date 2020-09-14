@@ -1,29 +1,21 @@
 package com.example.pictza;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.example.pictza.Database.DatabaseHelper;
 
 import java.util.Calendar;
 
-public class UploadPainting extends AppCompatActivity {
+public class AddEvent extends AppCompatActivity {
 
     EditText  eventName,date,time,location_event;
     Button btnAdd;
@@ -43,6 +35,7 @@ public class UploadPainting extends AppCompatActivity {
         time = findViewById(R.id.time);
         location_event = findViewById(R.id.locationevent);
         btnAdd=findViewById(R.id.addevent);
+     
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -56,11 +49,11 @@ public class UploadPainting extends AppCompatActivity {
 
                if(dbHelper.addEvent(et_eventname,et_date,et_time,et_location)){
 
-                    Toast.makeText(UploadPainting.this,"Successfully Added",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddEvent.this,"Successfully Added",Toast.LENGTH_SHORT).show();
 
 
                 }else {
-                    Toast.makeText(UploadPainting.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddEvent.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -75,7 +68,7 @@ public class UploadPainting extends AppCompatActivity {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker = new DatePickerDialog(UploadPainting.this,
+                picker = new DatePickerDialog(AddEvent.this,
                         new DatePickerDialog.OnDateSetListener() {
 
 
@@ -96,7 +89,7 @@ public class UploadPainting extends AppCompatActivity {
 
     public void home(View view){
 
-        Intent intent = new Intent(UploadPainting.this, paintings.class);
+        Intent intent = new Intent(AddEvent.this, event.class);
         startActivity(intent);
 
     }
