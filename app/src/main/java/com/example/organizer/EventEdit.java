@@ -76,6 +76,10 @@ public class EventEdit extends AppCompatActivity {
                     Toast.makeText(EventEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(EventEdit.this, EventList.class);
                     startActivity(intent);
+                    edeventName.setText("");
+                    eddate.setText("");
+                    edtime.setText("");
+                    edlocation_event.setText("");
                 }else{
                     Toast.makeText(EventEdit.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }

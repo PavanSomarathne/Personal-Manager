@@ -56,12 +56,14 @@ public class TODOEdit extends AppCompatActivity {
         String task=todoArray.get(0).getTask();
         String status=todoArray.get(0).getStatus();
         String location=todoArray.get(0).getLocation();
-
+        if (status != null) {
+            int spinnerPosition = adapter.getPosition(status);
+            edstatus.setSelection(spinnerPosition);
+        }
 
 
         edtask.setText(""+task);
         edstatus.getSelectedItem().toString();
-
         edlocation.setText(""+location);
 
 
@@ -75,8 +77,10 @@ final String new_location = edlocation.getText().toString();
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dbHelper.updateTODO(todoId, edtask.getText().toString(),edstatus.getSelectedItem().toString(), edlocation.getText().toString())){
+                if(dbHelper.updateTODO(todoId, edtask.getText().toString(), edlocation.getText().toString(),edstatus.getSelectedItem().toString())){
                     Toast.makeText(TODOEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
+                    edtask.setText("");
+                    edlocation.setText("");
                     Intent intent=new Intent(TODOEdit.this, TODOList.class);
                     startActivity(intent);
                 }else{
