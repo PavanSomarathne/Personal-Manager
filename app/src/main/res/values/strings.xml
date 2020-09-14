@@ -16,7 +16,6 @@
     <string name="removeevents">Remove</string>
 
 
-
     <string name="updateevent">Update Event</string>
     <string name="update">Update Users</string>
 
@@ -228,5 +227,6 @@
         <item>Completed</item>
         <item>Not Completed</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
