@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/addphoto" />
+        app:srcCompat="@drawable/add_event" />
 
     <ImageView
         android:id="@+id/imageView34"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/editshoww" />
+        app:srcCompat="@drawable/event" />
 
     <TextView
         android:id="@+id/textView2"
