@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,13 +24,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.pictza.Database.DatabaseHelper;
-import com.example.pictza.Database.FriendModel;
+import com.example.organizer.Database.DatabaseHelper;
+import com.example.organizer.Database.FriendModel;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class FriendEdit extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +15,8 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.pictza.Database.DatabaseHelper;
-import com.example.pictza.Database.EventModel;
+import com.example.organizer.Database.DatabaseHelper;
+import com.example.organizer.Database.EventModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,7 +35,7 @@ public class EventEdit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_painting_edit);
+        setContentView(R.layout.activity_event_edit);
 
         edeventName =findViewById(R.id.edeventname);
         eddate = findViewById(R.id.eddate);
@@ -74,7 +74,7 @@ public class EventEdit extends AppCompatActivity {
             public void onClick(View view) {
                 if(dbHelper.updateEvent(eventid, edeventName.getText().toString(),eddate.getText().toString(), edtime.getText().toString(), edlocation_event.getText().toString())){
                     Toast.makeText(EventEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(EventEdit.this, ManageEvent.class);
+                    Intent intent=new Intent(EventEdit.this, EventList.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(EventEdit.this,"Something went wrong",Toast.LENGTH_SHORT).show();
@@ -92,7 +92,7 @@ public class EventEdit extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(dbHelper.deleteEvent(eventid)){
                                     Toast.makeText(EventEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(EventEdit.this, ManageEvent.class);
+                                    Intent intent=new Intent(EventEdit.this, EventList.class);
                                     startActivity(intent);
                                 }else {
                                     Toast.makeText(EventEdit.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();

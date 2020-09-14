@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.pictza.Database.DatabaseHelper;
+import com.example.organizer.Database.DatabaseHelper;
 
 public class AddFriend extends AppCompatActivity {
     EditText fname,lname,address,age;

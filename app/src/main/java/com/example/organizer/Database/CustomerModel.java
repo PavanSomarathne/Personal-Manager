@@ -1,4 +1,4 @@
-package com.example.pictza.Database;
+package com.example.organizer.Database;
 
 public class CustomerModel {
 

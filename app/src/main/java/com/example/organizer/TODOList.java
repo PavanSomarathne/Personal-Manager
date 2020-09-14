@@ -18,7 +18,7 @@ import com.example.organizer.Database.TODOModel;
 
 import java.util.ArrayList;
 
-public class TODOView extends AppCompatActivity {
+public class TODOList extends AppCompatActivity {
 
     TableLayout table_tb;
     SearchView sv_search;
@@ -30,7 +30,7 @@ public class TODOView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_view);
+        setContentView(R.layout.activity_todo_list);
         dbHelper=new DatabaseHelper(this);
         todoModelArrayList=dbHelper.getTODOtasks();
 
@@ -38,7 +38,7 @@ public class TODOView extends AppCompatActivity {
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(TODOView.this, TODOSearch.class);
+                Intent intent=new Intent(TODOList.this, TODOSearch.class);
                 intent.putExtra("item_title",sv_search.getQuery().toString());
                 startActivity(intent);
 
@@ -71,7 +71,7 @@ public class TODOView extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(TODOView.this, UpdateTODO.class);
+                        Intent intent = new Intent(TODOList.this, TODOEdit.class);
                         intent.putExtra("todo_id", todoid);
                         startActivity(intent);
                     }

@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pictza.Database.DatabaseHelper;
+import com.example.organizer.Database.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
 

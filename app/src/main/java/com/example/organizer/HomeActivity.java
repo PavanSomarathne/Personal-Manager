@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void opencart(View view) {
-        Intent intent = new Intent(HomeActivity.this, AddOrCart.class);
+        Intent intent = new Intent(HomeActivity.this, ManageTODO.class);
         startActivity(intent);
     }
 
@@ -64,12 +64,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void opensearch(View view) {
-        Intent intent = new Intent(HomeActivity.this, ManageEvent.class);
+        Intent intent = new Intent(HomeActivity.this, EventList.class);
         startActivity(intent);
     }
 
     public void openpaint(View view) {
-        Intent intent = new Intent(HomeActivity.this, event.class);
+        Intent intent = new Intent(HomeActivity.this, ManageEvent.class);
         startActivity(intent);
     }
 

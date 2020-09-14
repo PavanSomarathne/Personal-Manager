@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.pictza.Database.DatabaseHelper;
+import com.example.organizer.Database.DatabaseHelper;
 
 public class AddTODO extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class AddTODO extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_search);
+        setContentView(R.layout.activity_add_todo);
         status = (Spinner) findViewById(R.id.status);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -83,7 +83,7 @@ public class AddTODO extends AppCompatActivity {
 
     public void back(View view){
 
-        Intent intent = new Intent(AddTODO.this, AddOrCart.class);
+        Intent intent = new Intent(AddTODO.this, ManageTODO.class);
         startActivity(intent);
 
     }

@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import android.content.Intent;
 import android.os.Bundle;

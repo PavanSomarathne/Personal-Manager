@@ -19,7 +19,7 @@ import com.example.organizer.Database.TODOModel;
 
 import java.util.ArrayList;
 
-public class UpdateTODO extends AppCompatActivity {
+public class TODOEdit extends AppCompatActivity {
 
     Spinner edstatus;
     EditText edtask,edlocation;
@@ -31,7 +31,7 @@ public class UpdateTODO extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_edit);
+        setContentView(R.layout.activity_todo_edit);
 
         edtask =findViewById(R.id.edtask);
         edstatus = (Spinner) findViewById(R.id.edstatus);
@@ -76,11 +76,11 @@ final String new_location = edlocation.getText().toString();
             @Override
             public void onClick(View view) {
                 if(dbHelper.updateTODO(todoId, edtask.getText().toString(),edstatus.getSelectedItem().toString(), edlocation.getText().toString())){
-                    Toast.makeText(UpdateTODO.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(UpdateTODO.this, TODOView.class);
+                    Toast.makeText(TODOEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(TODOEdit.this, TODOList.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(UpdateTODO.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TODOEdit.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -88,17 +88,17 @@ final String new_location = edlocation.getText().toString();
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert_box=new AlertDialog.Builder(UpdateTODO.this);
+                AlertDialog.Builder alert_box=new AlertDialog.Builder(TODOEdit.this);
                 alert_box.setMessage("Do You Really Want To Remove This Item ?").setCancelable(true)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(dbHelper.deleteTODO(todoId)){
-                                    Toast.makeText(UpdateTODO.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(UpdateTODO.this, TODOView.class);
+                                    Toast.makeText(TODOEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(TODOEdit.this, TODOList.class);
                                     startActivity(intent);
                                 }else {
-                                    Toast.makeText(UpdateTODO.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(TODOEdit.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
 
                                 }
                             }

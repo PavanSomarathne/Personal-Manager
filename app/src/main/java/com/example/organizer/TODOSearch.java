@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +13,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 
-import com.example.pictza.Database.DatabaseHelper;
-import com.example.pictza.Database.TODOModel;
+import com.example.organizer.Database.DatabaseHelper;
+import com.example.organizer.Database.TODOModel;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class TODOSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_view_search);
+        setContentView(R.layout.activity_todo_search);
 
 
         dbHelper=new DatabaseHelper(this);
@@ -68,7 +68,7 @@ public class TODOSearch extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(TODOSearch.this, UpdateTODO.class);
+                        Intent intent = new Intent(TODOSearch.this, TODOEdit.class);
                         intent.putExtra("todo_id", todoid);
                         startActivity(intent);
                     }

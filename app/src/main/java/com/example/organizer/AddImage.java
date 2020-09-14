@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import android.Manifest;
 import android.content.Intent;
@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.pictza.Database.DatabaseHelper;
+import com.example.organizer.Database.DatabaseHelper;
 
 import java.io.FileInputStream;
 

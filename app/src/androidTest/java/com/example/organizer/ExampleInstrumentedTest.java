@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import android.content.Context;
 
@@ -6,7 +6,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 

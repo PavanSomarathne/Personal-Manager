@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ManageEvent extends AppCompatActivity {
+public class EventList extends AppCompatActivity {
 
 
     TableLayout table_tb;
@@ -36,7 +36,7 @@ public class ManageEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_event);
+        setContentView(R.layout.activity_event_list);
         dbHelper=new DatabaseHelper(this);
         eventModelArrylist=dbHelper.getAllEvents();
 
@@ -44,7 +44,7 @@ public class ManageEvent extends AppCompatActivity {
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(ManageEvent.this, EventSearch.class);
+                Intent intent=new Intent(EventList.this, EventSearch.class);
                 intent.putExtra("painting_title",sv_search.getQuery().toString());
                 startActivity(intent);
 
@@ -97,7 +97,7 @@ public class ManageEvent extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(ManageEvent.this, EventEdit.class);
+                        Intent intent = new Intent(EventList.this, EventEdit.class);
                         intent.putExtra("event_id", eventid);
                         startActivity(intent);
                     }

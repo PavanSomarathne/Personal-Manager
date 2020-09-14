@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.pictza.Database.DatabaseHelper;
+import com.example.organizer.Database.DatabaseHelper;
 
 import java.util.Calendar;
 
@@ -33,7 +33,7 @@ public class AddEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_painting);
+        setContentView(R.layout.activity_add_event);
 
         eventName =findViewById(R.id.eventname);
         date = findViewById(R.id.date);
@@ -129,7 +129,7 @@ public class AddEvent extends AppCompatActivity {
 
     public void home(View view){
 
-        Intent intent = new Intent(AddEvent.this, event.class);
+        Intent intent = new Intent(AddEvent.this, ManageEvent.class);
         startActivity(intent);
 
     }

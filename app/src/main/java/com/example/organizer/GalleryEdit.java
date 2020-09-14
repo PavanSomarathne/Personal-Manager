@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.pictza.Database.DatabaseHelper;
-import com.example.pictza.Database.PhotoModel;
+import com.example.organizer.Database.DatabaseHelper;
+import com.example.organizer.Database.PhotoModel;
 
 import java.util.ArrayList;
 
