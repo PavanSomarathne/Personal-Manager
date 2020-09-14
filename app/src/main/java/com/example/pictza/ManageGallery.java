@@ -6,26 +6,26 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class viewOrEdit extends AppCompatActivity {
+public class ManageGallery extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_or_edit);
+        setContentView(R.layout.activity_manager_gallery);
     }
 
     public void openaddshow(View view) {
-        Intent intent = new Intent(viewOrEdit.this, addShow.class);
+        Intent intent = new Intent(ManageGallery.this, AddImage.class);
         startActivity(intent);
     }
 
     public void openmanageshow(View view) {
-        Intent intent = new Intent(viewOrEdit.this, manageShows.class);
+        Intent intent = new Intent(ManageGallery.this, Gallery.class);
         startActivity(intent);
     }
     public void home(View view){
 
-        Intent intent = new Intent(viewOrEdit.this, HomeActivity.class);
+        Intent intent = new Intent(ManageGallery.this, HomeActivity.class);
         startActivity(intent);
 
     }

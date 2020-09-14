@@ -28,8 +28,8 @@ public class paintings extends AppCompatActivity {
     }
     public void manage(View view){
 
-        Intent intent = new Intent(paintings.this, ManagePainting.class);
-        startActivity(intent);
+        //Intent intent = new Intent(paintings.this, ManagePainting.class);
+        //startActivity(intent);
 
     }
 }

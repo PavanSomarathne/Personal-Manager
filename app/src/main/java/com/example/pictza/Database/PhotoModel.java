@@ -1,9 +1,9 @@
 package com.example.pictza.Database;
 
-public class ShowModel {
+public class PhotoModel {
 
     int sid;
-    String location, date, time, description;
+    String name;
     private byte[] image;
 
     public int getSid() {
@@ -14,36 +14,12 @@ public class ShowModel {
         this.sid = sid;
     }
 
-    public String getLocation() {
-        return location;
+    public String getName() {
+        return name;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public byte[] getImage() {
