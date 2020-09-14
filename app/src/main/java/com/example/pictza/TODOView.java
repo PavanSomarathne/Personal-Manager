@@ -2,6 +2,7 @@ package com.example.pictza;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,38 +13,35 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-
-import com.example.pictza.Database.CartModel;
 import com.example.pictza.Database.DatabaseHelper;
 import com.example.pictza.Database.TODOModel;
 
 import java.util.ArrayList;
 
-public class CartViewSearch extends AppCompatActivity {
+public class TODOView extends AppCompatActivity {
 
-    TableLayout tb_search;
+    TableLayout table_tb;
     SearchView sv_search;
     private DatabaseHelper dbHelper;
     private ArrayList<TODOModel> todoModelArrayList;
 
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_view_search);
-
-
+        setContentView(R.layout.activity_cart_view);
         dbHelper=new DatabaseHelper(this);
-        String i_title=getIntent().getStringExtra("item_title");
-        todoModelArrayList=dbHelper.searchTodo(i_title);
+        todoModelArrayList=dbHelper.getTODOtasks();
 
-        sv_search=findViewById(R.id.view_drug_search2);
+        sv_search=findViewById(R.id.view_painting_search1);
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(CartViewSearch.this,CartViewSearch.class);
+                Intent intent=new Intent(TODOView.this, TODOSearch.class);
                 intent.putExtra("item_title",sv_search.getQuery().toString());
                 startActivity(intent);
+
                 return true;
             }
 
@@ -52,9 +50,13 @@ public class CartViewSearch extends AppCompatActivity {
                 return false;
             }
         });
-        tb_search=findViewById(R.id.view_table);
+
+
+
+
+        table_tb=findViewById(R.id.view_table);
         //TableLayout table = (TableLayout) findViewById(R.id.view_table);
-        tb_search.setStretchAllColumns(true);
+        table_tb.setStretchAllColumns(true);
         if( todoModelArrayList!=null) {
             for (int i = 0; i <  todoModelArrayList.size(); i++) {
 
@@ -69,7 +71,7 @@ public class CartViewSearch extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(CartViewSearch.this, CartEdit.class);
+                        Intent intent = new Intent(TODOView.this, UpdateTODO.class);
                         intent.putExtra("todo_id", todoid);
                         startActivity(intent);
                     }
@@ -95,7 +97,7 @@ public class CartViewSearch extends AppCompatActivity {
                 row.addView(tvtask);
                 row.addView(tvlocation);
                 row.addView(tvstatus);
-                tb_search.addView(row);
+                table_tb.addView(row);
             }
         }else{
             TableRow rowMsg = new TableRow(this);
@@ -105,7 +107,7 @@ public class CartViewSearch extends AppCompatActivity {
             tvmsg.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
             tvmsg.setGravity(Gravity.CENTER);
             rowMsg.addView(tvmsg);
-            tb_search.addView(rowMsg);
+            table_tb.addView(rowMsg);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.pictza;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,10 +21,13 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.pictza.Database.DatabaseHelper;
 
+import java.util.Calendar;
+
 public class UploadPainting extends AppCompatActivity {
 
     EditText  eventName,date,time,location_event;
     Button btnAdd;
+    DatePickerDialog picker;
 
 
 
@@ -58,6 +63,28 @@ public class UploadPainting extends AppCompatActivity {
                     Toast.makeText(UploadPainting.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(UploadPainting.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
             }
         });
 
