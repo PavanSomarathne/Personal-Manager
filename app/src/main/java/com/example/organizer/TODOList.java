@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +13,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.pictza.Database.DatabaseHelper;
-import com.example.pictza.Database.TODOModel;
+import com.example.organizer.Database.DatabaseHelper;
+import com.example.organizer.Database.TODOModel;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.pictza;
+package com.example.organizer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
