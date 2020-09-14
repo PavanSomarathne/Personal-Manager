@@ -13,7 +13,11 @@
     <string name="ids">ID</string>
     <string name="names">Name</string>
     <string name="emails">Email</string>
+    <string name="removeevents">Remove</string>
 
+
+
+    <string name="updateevent">Update Event</string>
     <string name="update">Update Users</string>
 
     <string name="addto">Add a new to-do-task</string>
@@ -161,7 +165,7 @@
     <string name="addbuynow">Add to Buy it Now</string>
     <string name="addauction">Add to Auction</string>
 
-
+    <string name="updateto">"Update TODO Tasks"</string>
     <string name="upload">Add New Events</string>
     <string name="title">Task name</string>
     <string name="category">Location</string>
@@ -218,6 +222,11 @@
         <item>Male</item>
         <item>Female</item>
         <item>Rather not say</item>
+    </string-array>
+
+    <string-array name="status_array">
+        <item>Completed</item>
+        <item>Not Completed</item>
     </string-array>
 
 </resources>

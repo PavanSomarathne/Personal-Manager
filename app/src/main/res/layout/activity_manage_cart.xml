@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CartView">
+    tools:context=".ManagePainting">
 
 
     <LinearLayout
@@ -30,18 +30,18 @@
         <TableRow
             style="@style/tableRow"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:divider="@android:drawable/bottom_bar">
 
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="7dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
 
                 android:layout_weight="1"
                 android:background="#EEEEEE"
                 android:gravity="center_horizontal"
-                android:text="@string/ids"
+                android:text="@string/title2"
                 android:textColor="#251D1D"
                 android:textIsSelectable="false"
                 android:textSize="20sp" />
@@ -55,30 +55,21 @@
                 android:layout_weight="1"
                 android:background="#EEEEEE"
                 android:gravity="center_horizontal"
-                android:text="task"
+                android:text="@string/date"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView27"
                 android:layout_width="35dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#EEEEEE"
                 android:gravity="center_horizontal"
-                android:text="location"
+                android:text="@string/timeshow"
                 android:textColor="#000000"
                 android:textSize="20sp" />
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="35dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="#EEEEEE"
-                android:gravity="center_horizontal"
-                android:text="status"
-                android:textColor="#000000"
-                android:textSize="20sp" />
+
 
         </TableRow>
 
