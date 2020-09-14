@@ -37,7 +37,7 @@ public class FriendEdit extends AppCompatActivity {
 
     EditText fname,lname,address,age;
     Spinner gender;
-    Button btnUpdate,btnRemove,imgup;
+    Button btnUpdate,btnRemove,imgup,mapBtn;
     ImageView upFriend;
     String id;
     ArrayList<FriendModel> friendArray;
@@ -56,6 +56,7 @@ public class FriendEdit extends AppCompatActivity {
         age=findViewById(R.id.age);
         upFriend=findViewById(R.id.up_imageFriend);
         imgup=findViewById(R.id.btn_showImg);
+        mapBtn=findViewById(R.id.btn_location);
 
         gender = (Spinner) findViewById(R.id.gender);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -168,6 +169,20 @@ public class FriendEdit extends AppCompatActivity {
                 AlertDialog alert = alert_box.create();
                 alert.setTitle("Alert !!!");
                 alert.show();
+
+            }
+        });
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(address.getText().toString()!=null){
+                    Intent intent = new Intent(FriendEdit.this, MapsActivity.class);
+                    intent.putExtra("address",address.getText().toString());
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(FriendEdit.this,"No address in the field",Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
