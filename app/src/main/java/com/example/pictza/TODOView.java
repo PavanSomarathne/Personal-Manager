@@ -83,9 +83,6 @@ public class TODOView extends AppCompatActivity {
                 TextView tvtask = new TextView(this);
                 tvtask.setText("" + task);
                 tvtask.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
-                TextView tvlocation = new TextView(this);
-                tvlocation.setText("" + location);
-                tvlocation.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
                 TextView tvstatus = new TextView(this);
                 tvstatus.setText("" + status);
                 tvstatus.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
@@ -95,7 +92,6 @@ public class TODOView extends AppCompatActivity {
 
                 row.addView(tvid);
                 row.addView(tvtask);
-                row.addView(tvlocation);
                 row.addView(tvstatus);
                 table_tb.addView(row);
             }

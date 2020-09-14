@@ -16,7 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.pictza.Database.EventModel;
 import com.example.pictza.Database.DatabaseHelper;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ManageEvent extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class ManageEvent extends AppCompatActivity {
     SearchView sv_search;
     private DatabaseHelper dbHelper;
     private ArrayList<EventModel> eventModelArrylist;
+    String status;
 
 
     @SuppressLint("NewApi")
@@ -69,6 +74,25 @@ public class ManageEvent extends AppCompatActivity {
                 String eventDate = eventModelArrylist.get(i).getDate();
                 String eventTime = eventModelArrylist.get(i).getTime();
                 String eventLocation = eventModelArrylist.get(i).getLocation_event();
+                String dateTime=eventDate + " "+eventTime+ ":00";
+
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date dateobj = new Date();
+
+
+                try {
+                    Date d1 = df.parse(dateTime);
+                    Date d2 = df.parse(df.format(dateobj));
+                    if(d1.compareTo(d2) > 0){
+                        status="current";
+                    }else {
+                        status="Past";
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
 
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -82,15 +106,15 @@ public class ManageEvent extends AppCompatActivity {
 
 
                 TextView tveventName = new TextView(this);
-                tveventName.setText("" + eventName);
+                tveventName.setText("  " + eventid);
                 tveventName.setTextAppearance(getApplicationContext(), R.style.table_row_tView2);
 
                 TextView tveventDate = new TextView(this);
-                tveventDate.setText("" + eventDate);
+                tveventDate.setText("" + eventName);
                 tveventDate.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
 
                 TextView tveventTime = new TextView(this);
-                tveventTime.setText("" + eventTime);
+                tveventTime.setText("" + status);
                 tveventTime.setTextAppearance(getApplicationContext(), R.style.table_row_tView3);
 
 
@@ -108,7 +132,7 @@ public class ManageEvent extends AppCompatActivity {
             TableRow rowMsg = new TableRow(this);
             rowMsg.setBackgroundColor(Color.parseColor("#FFFFFF"));
             TextView tvmsg = new TextView(this);
-            tvmsg.setText("No Paintings");
+            tvmsg.setText("No Events");
             tvmsg.setTextAppearance(getApplicationContext(), R.style.table_row_tView1);
             tvmsg.setGravity(Gravity.CENTER);
             rowMsg.addView(tvmsg);
