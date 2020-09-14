@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FriendListSearch"></activity>
+        <activity android:name=".GalleryEdit"></activity>
+        <activity android:name=".Gallery" />
+        <activity android:name=".FriendListSearch" />
         <activity android:name=".FriendEdit" />
         <activity android:name=".AddFriend" />
         <activity android:name=".UpdateTODO" />
@@ -35,11 +37,8 @@
         <activity android:name=".UploadPainting" />
         <activity android:name=".auctionAdd" />
         <activity android:name=".ManageFriends" />
-        <activity android:name=".viewOrEdit" />
-        <activity android:name=".profileArtist" />
-        <activity android:name=".manageShows" />
-        <activity android:name=".addShow" />
-        <activity android:name=".shows" />
+        <activity android:name=".ManageGallery" />
+        <activity android:name=".AddImage" />
         <activity android:name=".item" />
         <activity android:name=".FriendList" />
         <activity android:name=".cart" />

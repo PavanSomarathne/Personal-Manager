@@ -48,9 +48,7 @@ public class FriendListSearch extends AppCompatActivity {
             }
         });
 
-
-
-
+        
         table_tb=findViewById(R.id.view_table);
         //TableLayout table = (TableLayout) findViewById(R.id.view_table);
         table_tb.setStretchAllColumns(true);

@@ -86,7 +86,7 @@
     <string name="iname">Name</string>
     <string name="con">Confirm Password</string>
 
-    <string name="showshome">Photo Gallery</string>
+    <string name="showshome">Gallery</string>
     <string name="auchome">Auctions</string>
 
     <string name="priceitem">Price</string>
@@ -185,13 +185,13 @@
     <string name="timeauc">Time Duration</string>
 
 
-    <string name="manage">Manage Gallery</string>
+    <string name="manage">My Gallery</string>
 
     <string name="addimage">Add New Painting</string>
-    <string name="addshow">Add Gallery</string>
+    <string name="addshow">Add To Gallery</string>
 
     <string name="shows">Worldwide Art Shows</string>
-    <string name="showsadd">Add to the Photo Galllery</string>
+    <string name="showsadd">Add to the Photo Gallery</string>
 
     <string name="dessccshow">It is a rich reflection of Sri Lankan history and culture. Good place, location wise it is near the Central Park near independence square, great bistros and small yet great eateries.</string>
 

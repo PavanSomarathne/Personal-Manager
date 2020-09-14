@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addShow">
+    tools:context=".AddImage">
 
 
     <Button
@@ -12,15 +12,16 @@
         android:layout_width="43dp"
         android:layout_height="37dp"
         android:layout_marginStart="217dp"
+        android:layout_marginTop="95dp"
         android:layout_marginEnd="151dp"
-        android:layout_marginBottom="182dp"
+        android:layout_marginBottom="420dp"
         android:background="@drawable/showimage"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/up_location"
+        app:layout_constraintTop_toTopOf="@+id/img_name"
         app:layout_constraintVertical_bias="0.151" />
 
     <TextView
@@ -45,7 +46,7 @@
     <Button
         android:id="@+id/remove"
         android:layout_width="128dp"
-        android:layout_height="55dp"
+        android:layout_height="45dp"
         android:layout_gravity="start"
         android:layout_marginStart="141dp"
         android:layout_marginEnd="142dp"
@@ -62,12 +63,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.8" />
 
     <EditText
-        android:id="@+id/up_location"
+        android:id="@+id/img_name"
         android:layout_width="236dp"
-        android:layout_height="56dp"
+        android:layout_height="45dp"
 
         android:layout_marginStart="153dp"
         android:layout_marginTop="173dp"
@@ -94,7 +95,7 @@
         android:layout_marginEnd="258dp"
         android:layout_marginBottom="502dp"
         android:fontFamily="@font/poppins_light"
-        android:text="@string/location"
+        android:text="@string/names"
         android:textColor="#1D1D1D"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -137,6 +138,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_showImg"
-        app:layout_constraintVertical_bias="0.29" />
+        app:layout_constraintVertical_bias="0.965" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="288dp"
+        android:layout_height="201dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.622"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

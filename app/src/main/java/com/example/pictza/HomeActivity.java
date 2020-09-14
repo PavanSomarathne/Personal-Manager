@@ -14,7 +14,7 @@ public class HomeActivity extends AppCompatActivity {
 
     ImageView user;
     TextView usertxt;
-    int count=0;
+
 
     SharedPreferences sharedpreferences;
 
@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                     Intent intent = new Intent(HomeActivity.this, ManageFriends.class);
                     startActivity(intent);
-                    count++;
+
             }
         });
 
@@ -59,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void shows(View view) {
-        Intent intent = new Intent(HomeActivity.this, viewOrEdit.class);
+        Intent intent = new Intent(HomeActivity.this, ManageGallery.class);
         startActivity(intent);
     }
 
