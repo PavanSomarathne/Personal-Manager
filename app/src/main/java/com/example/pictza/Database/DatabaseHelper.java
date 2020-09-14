@@ -761,56 +761,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<PaintingModel> getAllPaintings() {
-        ArrayList<PaintingModel> paintingModelArrayList = null;
 
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_PAINTING,null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            paintingModelArrayList = new ArrayList<PaintingModel>();
-            do {
-                PaintingModel paintingModel = new PaintingModel();
-
-                paintingModel.setPid(c.getInt(c.getColumnIndex(KEY_PAINTINGID)));
-                paintingModel.setTitle(c.getString(c.getColumnIndex(KEY_PAINTINGTITLE)));
-                paintingModel.setCategory(c.getString(c.getColumnIndex(KEY_PAINTINGCATEGORY)));
-                paintingModel.setDescription(c.getString(c.getColumnIndex(KEY_PAINTINGDESCRIPTION)));
-                paintingModel.setPrice(c.getString(c.getColumnIndex(KEY_PAINTINGPRICE)));
-
-                // adding to customer list
-                paintingModelArrayList.add(paintingModel);
-            } while (c.moveToNext());
-        }
-        return paintingModelArrayList;
-
-
-    }
-
-    public ArrayList<PaintingModel> getPainting(String pid){
-
-        ArrayList<PaintingModel> paintingArray = null;
-        SQLiteDatabase db=getReadableDatabase();
-        String[] args={pid};
-        Cursor c=db.rawQuery("SELECT * FROM "+TABLE_PAINTING+" WHERE "+KEY_PAINTINGID+" = ?",args);
-        if(c.moveToFirst()){
-            paintingArray=new ArrayList<PaintingModel>();
-            do{
-                PaintingModel paintingMod=new PaintingModel();
-                paintingMod.setPid(c.getInt(c.getColumnIndex(KEY_PAINTINGID)));
-                paintingMod.setTitle(c.getString(c.getColumnIndex(KEY_PAINTINGTITLE)));
-                paintingMod.setCategory(c.getString(c.getColumnIndex(KEY_PAINTINGCATEGORY)));
-                paintingMod.setDescription(c.getString(c.getColumnIndex(KEY_PAINTINGDESCRIPTION)));
-                paintingMod.setPrice(c.getString(c.getColumnIndex(KEY_PAINTINGPRICE)));
-
-                paintingArray.add(paintingMod);
-
-            }while (c.moveToNext());
-        }
-        return paintingArray;
-
-    }
 
     public Boolean updatePainting(int pid, String title, String category, String description, String price) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -851,34 +802,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<PaintingModel> searchPainting(String painting) {
-
-        ArrayList<PaintingModel> paintingModels = null;
-
-        try {
-
-            SQLiteDatabase db = getReadableDatabase();
-            Cursor c = db.rawQuery("SELECT * FROM " + TABLE_PAINTING + " WHERE " + KEY_PAINTINGTITLE + " LIKE ?", new String[] { "%" + painting + "%" });
-
-            // looping through all rows and adding to list
-            if (c.moveToFirst()) {
-                paintingModels = new ArrayList<PaintingModel>();
-                do {
-                    PaintingModel paintingModel = new PaintingModel();
-                    paintingModel.setPid(c.getInt(c.getColumnIndex(KEY_PAINTINGID)));
-                    paintingModel.setTitle(c.getString(c.getColumnIndex(KEY_PAINTINGTITLE)));
-                    paintingModel.setCategory(c.getString(c.getColumnIndex(KEY_PAINTINGCATEGORY)));
-                    paintingModel.setDescription(c.getString(c.getColumnIndex(KEY_PAINTINGDESCRIPTION)));
-                    paintingModel.setPrice(c.getString(c.getColumnIndex(KEY_PAINTINGPRICE)));
-                    // adding to customer list
-                    paintingModels.add(paintingModel);
-                } while (c.moveToNext());
-            }
-        }catch(Exception e) {
-            paintingModels = null;
-        }
-        return paintingModels;
-    }
 
     public Cursor getPaintingData(String sql){
         SQLiteDatabase db = getReadableDatabase();
@@ -912,58 +835,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<CartModel> getAllItems() {
-        ArrayList<CartModel> cartModelArrayList = null;
-
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM "+TABLE_CART,null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            cartModelArrayList = new ArrayList<CartModel>();
-            do {
-                CartModel cartModel = new CartModel();
-
-                cartModel.setCid(c.getInt(c.getColumnIndex(KEY_ITEMID)));
-                cartModel.setItemTitle(c.getString(c.getColumnIndex(KEY_ITEMTITLE)));
-                cartModel.setItemCategory(c.getString(c.getColumnIndex(KEY_ITEMCATEGORY)));
-                cartModel.setItemDescription(c.getString(c.getColumnIndex(KEY_ITEMDESCRIPTION)));
-                cartModel.setItemPrice(c.getString(c.getColumnIndex(KEY_ITEMPRICE)));
-                cartModel.setItemQuantity(c.getString(c.getColumnIndex(KEY_ITEMQUANTITY)));
-
-                // adding to customer list
-                cartModelArrayList.add(cartModel);
-            } while (c.moveToNext());
-        }
-        return cartModelArrayList;
-
-
-    }
-
-    public ArrayList<CartModel> getItem(String cid){
-
-        ArrayList<CartModel> cartArray = null;
-        SQLiteDatabase db=getReadableDatabase();
-        String[] args={cid};
-        Cursor c=db.rawQuery("SELECT * FROM "+TABLE_CART+" WHERE "+KEY_ITEMID+" = ?",args);
-        if(c.moveToFirst()){
-            cartArray=new ArrayList<CartModel>();
-            do{
-                CartModel cartMod=new CartModel();
-                cartMod.setCid(c.getInt(c.getColumnIndex(KEY_ITEMID)));
-                cartMod.setItemTitle(c.getString(c.getColumnIndex(KEY_ITEMTITLE)));
-                cartMod.setItemCategory(c.getString(c.getColumnIndex(KEY_ITEMCATEGORY)));
-                cartMod.setItemDescription(c.getString(c.getColumnIndex(KEY_ITEMDESCRIPTION)));
-                cartMod.setItemPrice(c.getString(c.getColumnIndex(KEY_ITEMPRICE)));
-                cartMod.setItemQuantity(c.getString(c.getColumnIndex(KEY_ITEMQUANTITY)));
-
-                cartArray.add(cartMod);
-
-            }while (c.moveToNext());
-        }
-        return cartArray;
-
-    }
 
    /* public Boolean updateCart(String itemTitle, String itemCategory, String itemDescription, String itemPrice) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1004,36 +875,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-
-    public ArrayList<CartModel> searchItem(String item) {
-
-        ArrayList<CartModel> cartModels = null;
-
-        try {
-
-            SQLiteDatabase db = getReadableDatabase();
-            Cursor c = db.rawQuery("SELECT * FROM " + TABLE_CART + " WHERE " + KEY_ITEMTITLE + " LIKE ?", new String[] { "%" + item + "%" });
-
-            // looping through all rows and adding to list
-            if (c.moveToFirst()) {
-                cartModels = new ArrayList<CartModel>();
-                do {
-                    CartModel cartModel = new CartModel();
-                    cartModel.setCid(c.getInt(c.getColumnIndex(KEY_ITEMID)));
-                    cartModel.setItemTitle(c.getString(c.getColumnIndex(KEY_ITEMTITLE)));
-                    cartModel.setItemCategory(c.getString(c.getColumnIndex(KEY_ITEMCATEGORY)));
-                    cartModel.setItemDescription(c.getString(c.getColumnIndex(KEY_ITEMDESCRIPTION)));
-                    cartModel.setItemPrice(c.getString(c.getColumnIndex(KEY_ITEMPRICE)));
-                    cartModel.setItemQuantity(c.getString(c.getColumnIndex(KEY_ITEMQUANTITY)));
-
-                    cartModels.add(cartModel);
-                } while (c.moveToNext());
-            }
-        }catch(Exception e) {
-            cartModels = null;
-        }
-        return cartModels;
-    }
 
 
 // Cart Section Over

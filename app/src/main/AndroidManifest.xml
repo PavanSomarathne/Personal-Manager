@@ -24,7 +24,6 @@
         <activity android:name=".TODOSearch" />
         <activity android:name=".TODOView" />
         <activity android:name=".AddOrCart" />
-        <activity android:name=".ManageCart" />
         <activity android:name=".AddTODO" />
         <activity android:name=".EventSearch" />
         <activity android:name=".EventEdit" />

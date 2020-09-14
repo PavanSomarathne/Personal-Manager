@@ -1,12 +1,15 @@
 package com.example.pictza;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +23,8 @@ public class AddEvent extends AppCompatActivity {
     EditText  eventName,date,time,location_event;
     Button btnAdd;
     DatePickerDialog picker;
+
+    String amPm;
 
 
 
@@ -35,7 +40,36 @@ public class AddEvent extends AppCompatActivity {
         time = findViewById(R.id.time);
         location_event = findViewById(R.id.locationevent);
         btnAdd=findViewById(R.id.addevent);
-     
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            date.setShowSoftInputOnFocus(false);
+            time.setShowSoftInputOnFocus(false);
+        }
+
+
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddEvent.this, new TimePickerDialog.OnTimeSetListener() {
+
+
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+
+                        if (hourOfDay >= 12) {
+                            amPm = "PM";
+                        } else {
+                            amPm = "AM";
+                        }
+                        time.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
+
+                    }
+                }, 0, 0, false);
+                timePickerDialog.show();
+            }
+        });
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
