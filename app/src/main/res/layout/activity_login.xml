@@ -31,44 +31,20 @@
         app:layout_constraintTop_toBottomOf="@+id/age"
         app:layout_constraintVertical_bias="0.493" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="142dp"
-        android:layout_height="57dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="48dp"
-        android:background="@drawable/rounded_button"
-        android:enabled="true"
-        android:fontFamily="@font/poppins_light"
-        android:onClick="gotoprofile"
-        android:text="@string/action_sign_in"
-        android:textColor="#242222"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="207dp"
-        android:layout_height="102dp"
+        android:layout_width="239dp"
+        android:layout_height="166dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="528dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.097"
-        app:srcCompat="@drawable/l" />
+        app:srcCompat="@drawable/mianlogo" />
 
     <EditText
         android:id="@+id/f_name"

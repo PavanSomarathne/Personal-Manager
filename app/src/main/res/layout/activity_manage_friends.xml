@@ -11,7 +11,6 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="145dp"
-        android:layout_marginTop="495dp"
         android:layout_marginEnd="146dp"
         android:layout_marginBottom="116dp"
         android:contentDescription="@string/remove"
@@ -19,15 +18,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView51"
         app:srcCompat="@drawable/home" />
 
     <TextView
         android:id="@+id/textView67"
-        android:layout_width="202dp"
-        android:layout_height="99dp"
+        android:layout_width="193dp"
+        android:layout_height="65dp"
         android:layout_marginStart="29dp"
-        android:layout_marginTop="612dp"
         android:layout_marginEnd="30dp"
         android:fontFamily="@font/poppins_light"
         android:gravity="center"
@@ -36,17 +34,18 @@
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView41"
+        app:layout_constraintVertical_bias="0.134" />
 
     <TextView
         android:id="@+id/textView51"
         android:layout_width="195dp"
         android:layout_height="59dp"
         android:layout_marginStart="29dp"
-        android:layout_marginTop="416dp"
         android:layout_marginEnd="30dp"
         android:fontFamily="@font/poppins_light"
         android:gravity="center"
@@ -55,33 +54,35 @@
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView38"
+        app:layout_constraintVertical_bias="0.066" />
 
     <ImageView
         android:id="@+id/imageView37"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="145dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="63dp"
         android:layout_marginEnd="146dp"
-        android:layout_marginBottom="572dp"
+        android:layout_marginBottom="548dp"
         android:contentDescription="@string/view"
         android:onClick="viewUsers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/view" />
+        app:srcCompat="@drawable/reguser" />
 
     <TextView
         android:id="@+id/textView52"
         android:layout_width="176dp"
         android:layout_height="73dp"
         android:layout_marginStart="29dp"
-        android:layout_marginTop="176dp"
         android:layout_marginEnd="30dp"
         android:fontFamily="@font/poppins_light"
         android:gravity="center"
@@ -93,14 +94,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView37" />
 
     <ImageView
         android:id="@+id/imageView38"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="145dp"
-        android:layout_marginTop="280dp"
         android:layout_marginEnd="146dp"
         android:layout_marginBottom="331dp"
         android:contentDescription="@string/edit"
@@ -108,6 +108,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/edituser" />
+        app:layout_constraintTop_toBottomOf="@+id/textView52"
+        app:srcCompat="@drawable/my_friends" />
 </androidx.constraintlayout.widget.ConstraintLayout>

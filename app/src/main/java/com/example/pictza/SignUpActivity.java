@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pictza.Database.DatabaseHelper;
 
-public class Main5Activity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     EditText in_username, in_email,in_password,in_passwordcf;
     Button in_signup;
@@ -21,7 +21,7 @@ public class Main5Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.activity_sign_up);
 
         in_username=findViewById(R.id.up_name);
         in_email=findViewById(R.id.up_email);
@@ -42,16 +42,16 @@ public class Main5Activity extends AppCompatActivity {
                 String et_password_confirm=in_passwordcf.getText().toString();
 
                 if(!et_email.matches(emailPattern)){
-                    Toast.makeText(Main5Activity.this,"Please Enter a valid email",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this,"Please Enter a valid email",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(et_username.equals("")|| et_email.equals("")|| et_password.equals("")|| et_password_confirm.equals("")){
-                    Toast.makeText(Main5Activity.this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!et_password.equals(et_password_confirm)){
-                    Toast.makeText(Main5Activity.this,"Passwords do not Match",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this,"Passwords do not Match",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(dbHelper.addCustomer(et_username, et_email, et_password)){
@@ -60,15 +60,15 @@ public class Main5Activity extends AppCompatActivity {
                     in_password.setText("");
                     in_passwordcf.setText("");
 
-                    Toast.makeText(Main5Activity.this,"You have successfully signed up",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this,"You have successfully signed up",Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(Main5Activity.this, LoginActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     startActivity(intent);
 
-                    Toast.makeText(Main5Activity.this,"Now you can login",Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this,"Now you can login",Toast.LENGTH_LONG).show();
 
                 }else {
-                    Toast.makeText(Main5Activity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
 
             }

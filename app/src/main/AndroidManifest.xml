@@ -27,18 +27,12 @@
         <activity android:name=".CartSearch" />
         <activity android:name=".paintings" />
         <activity android:name=".FriendEditDelete" />
-        <activity android:name=".payment" />
-        <activity android:name=".bid" />
-        <activity android:name=".search" />
         <activity android:name=".UploadPainting" />
-        <activity android:name=".auctionAdd" />
         <activity android:name=".ManageFriends" />
         <activity android:name=".ManageGallery" />
         <activity android:name=".AddImage" />
-        <activity android:name=".item" />
         <activity android:name=".FriendList" />
-        <activity android:name=".cart" />
-        <activity android:name=".Main5Activity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity">
 
             <!-- android:label="@string/title_activity_login" -->

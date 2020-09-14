@@ -29,7 +29,7 @@ public class PaintingSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_painting_search);
+        //setContentView(R.layout.activity_painting_search);
 
 
         dbHelper=new DatabaseHelper(this);

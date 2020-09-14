@@ -12,9 +12,7 @@
         android:layout_height="46dp"
         android:layout_gravity="start"
         android:layout_marginStart="128dp"
-        android:layout_marginTop="642dp"
         android:layout_marginEnd="129dp"
-        android:layout_marginBottom="43dp"
         android:background="@drawable/rounded_button2"
         android:enabled="true"
         android:fontFamily="@font/poppins_light"
@@ -24,10 +22,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageView
         android:id="@+id/imageView61"
@@ -43,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cart" />
+        app:srcCompat="@drawable/todo_list" />
 
     <TextView
         android:id="@+id/textView102"
@@ -99,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/paint" />
+        app:srcCompat="@drawable/event_icon_png_17" />
 
     <ImageView
         android:id="@+id/imageView43"
@@ -115,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shows" />
+        app:srcCompat="@drawable/gallery" />
 
     <TextView
         android:id="@+id/textView71"
@@ -173,35 +170,18 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="145dp"
-        android:layout_height="67dp"
+        android:layout_width="214dp"
+        android:layout_height="127dp"
         android:layout_marginStart="133dp"
-        android:layout_marginTop="33dp"
         android:layout_marginEnd="133dp"
-        android:layout_marginBottom="631dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/l" />
-
-    <TextView
-        android:id="@+id/hiddentxt"
-        android:layout_width="59dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="325dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="673dp"
-        android:fontFamily="@font/poppins_light"
-        android:text="@string/ad"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.003"
+        app:srcCompat="@drawable/mianlogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
