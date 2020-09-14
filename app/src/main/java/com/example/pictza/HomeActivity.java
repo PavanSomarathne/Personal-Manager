@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void openpaint(View view) {
-        Intent intent = new Intent(HomeActivity.this, paintings.class);
+        Intent intent = new Intent(HomeActivity.this, event.class);
         startActivity(intent);
     }
 

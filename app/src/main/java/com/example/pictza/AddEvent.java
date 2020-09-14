@@ -1,33 +1,30 @@
 package com.example.pictza;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.example.pictza.Database.DatabaseHelper;
 
 import java.util.Calendar;
 
-public class UploadPainting extends AppCompatActivity {
+public class AddEvent extends AppCompatActivity {
 
     EditText  eventName,date,time,location_event;
     Button btnAdd;
     DatePickerDialog picker;
+
+    String amPm;
 
 
 
@@ -44,6 +41,36 @@ public class UploadPainting extends AppCompatActivity {
         location_event = findViewById(R.id.locationevent);
         btnAdd=findViewById(R.id.addevent);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            date.setShowSoftInputOnFocus(false);
+            time.setShowSoftInputOnFocus(false);
+        }
+
+
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddEvent.this, new TimePickerDialog.OnTimeSetListener() {
+
+
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+
+                        if (hourOfDay >= 12) {
+                            amPm = "PM";
+                        } else {
+                            amPm = "AM";
+                        }
+                        time.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
+
+                    }
+                }, 0, 0, false);
+                timePickerDialog.show();
+            }
+        });
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,11 +83,11 @@ public class UploadPainting extends AppCompatActivity {
 
                if(dbHelper.addEvent(et_eventname,et_date,et_time,et_location)){
 
-                    Toast.makeText(UploadPainting.this,"Successfully Added",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddEvent.this,"Successfully Added",Toast.LENGTH_SHORT).show();
 
 
                 }else {
-                    Toast.makeText(UploadPainting.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddEvent.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -75,7 +102,7 @@ public class UploadPainting extends AppCompatActivity {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker = new DatePickerDialog(UploadPainting.this,
+                picker = new DatePickerDialog(AddEvent.this,
                         new DatePickerDialog.OnDateSetListener() {
 
 
@@ -96,7 +123,7 @@ public class UploadPainting extends AppCompatActivity {
 
     public void home(View view){
 
-        Intent intent = new Intent(UploadPainting.this, paintings.class);
+        Intent intent = new Intent(AddEvent.this, event.class);
         startActivity(intent);
 
     }

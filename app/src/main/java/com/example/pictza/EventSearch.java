@@ -68,7 +68,7 @@ public class EventSearch extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(EventSearch.this, PaintingEdit.class);
+                        Intent intent = new Intent(EventSearch.this, EventEdit.class);
                         intent.putExtra("event_id", eventid);
                         startActivity(intent);
                     }

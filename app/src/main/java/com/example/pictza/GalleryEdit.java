@@ -74,5 +74,8 @@ public class GalleryEdit extends AppCompatActivity {
         });
 
 
+
+
+
     }
 }

@@ -16,7 +16,7 @@ import com.example.pictza.Database.EventModel;
 
 import java.util.ArrayList;
 
-public class PaintingEdit extends AppCompatActivity {
+public class EventEdit extends AppCompatActivity {
 
     EditText edeventName,eddate,edtime,edlocation_event;
     Button btnUpdate,btnRemove;
@@ -66,11 +66,11 @@ public class PaintingEdit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(dbHelper.updateEvent(eventid, edeventName.getText().toString(),eddate.getText().toString(), edtime.getText().toString(), edlocation_event.getText().toString())){
-                    Toast.makeText(PaintingEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(PaintingEdit.this, ManageEvent.class);
+                    Toast.makeText(EventEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(EventEdit.this, ManageEvent.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(PaintingEdit.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EventEdit.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -78,17 +78,17 @@ public class PaintingEdit extends AppCompatActivity {
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert_box=new AlertDialog.Builder(PaintingEdit.this);
+                AlertDialog.Builder alert_box=new AlertDialog.Builder(EventEdit.this);
                 alert_box.setMessage("Do You Really Want To Remove This Painting ?").setCancelable(true)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(dbHelper.deleteEvent(eventid)){
-                                    Toast.makeText(PaintingEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(PaintingEdit.this, ManageEvent.class);
+                                    Toast.makeText(EventEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(EventEdit.this, ManageEvent.class);
                                     startActivity(intent);
                                 }else {
-                                    Toast.makeText(PaintingEdit.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EventEdit.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
 
                                 }
                             }

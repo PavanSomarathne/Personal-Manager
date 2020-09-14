@@ -73,7 +73,7 @@ public class ManageEvent extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(ManageEvent.this, PaintingEdit.class);
+                        Intent intent = new Intent(ManageEvent.this, EventEdit.class);
                         intent.putExtra("event_id", eventid);
                         startActivity(intent);
                     }
