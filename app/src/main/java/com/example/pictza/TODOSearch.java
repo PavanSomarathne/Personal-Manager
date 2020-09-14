@@ -13,13 +13,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 
-import com.example.pictza.Database.CartModel;
 import com.example.pictza.Database.DatabaseHelper;
 import com.example.pictza.Database.TODOModel;
 
 import java.util.ArrayList;
 
-public class CartViewSearch extends AppCompatActivity {
+public class TODOSearch extends AppCompatActivity {
 
     TableLayout tb_search;
     SearchView sv_search;
@@ -41,7 +40,7 @@ public class CartViewSearch extends AppCompatActivity {
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(CartViewSearch.this,CartViewSearch.class);
+                Intent intent=new Intent(TODOSearch.this, TODOSearch.class);
                 intent.putExtra("item_title",sv_search.getQuery().toString());
                 startActivity(intent);
                 return true;
@@ -69,7 +68,7 @@ public class CartViewSearch extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(CartViewSearch.this, CartEdit.class);
+                        Intent intent = new Intent(TODOSearch.this, UpdateTODO.class);
                         intent.putExtra("todo_id", todoid);
                         startActivity(intent);
                     }

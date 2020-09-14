@@ -22,12 +22,12 @@ public class AddOrCart extends AppCompatActivity {
     }
 
     public void addtocart(View view) {
-        Intent intent = new Intent(AddOrCart.this,CartSearch.class);
+        Intent intent = new Intent(AddOrCart.this, AddTODO.class);
         startActivity(intent);
     }
 
     public void viewcart(View view) {
-        Intent intent = new Intent(AddOrCart.this, CartView.class);
+        Intent intent = new Intent(AddOrCart.this, TODOView.class);
         startActivity(intent);
     }
 

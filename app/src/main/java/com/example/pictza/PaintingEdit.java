@@ -5,20 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pictza.Database.DatabaseHelper;
 import com.example.pictza.Database.EventModel;
-import com.example.pictza.Database.PaintingModel;
 
 import java.util.ArrayList;
 
@@ -73,7 +67,7 @@ public class PaintingEdit extends AppCompatActivity {
             public void onClick(View view) {
                 if(dbHelper.updateEvent(eventid, edeventName.getText().toString(),eddate.getText().toString(), edtime.getText().toString(), edlocation_event.getText().toString())){
                     Toast.makeText(PaintingEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(PaintingEdit.this,ManagePainting.class);
+                    Intent intent=new Intent(PaintingEdit.this, ManageEvent.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(PaintingEdit.this,"Something went wrong",Toast.LENGTH_SHORT).show();
@@ -91,7 +85,7 @@ public class PaintingEdit extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(dbHelper.deleteEvent(eventid)){
                                     Toast.makeText(PaintingEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(PaintingEdit.this,ManagePainting.class);
+                                    Intent intent=new Intent(PaintingEdit.this, ManageEvent.class);
                                     startActivity(intent);
                                 }else {
                                     Toast.makeText(PaintingEdit.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();

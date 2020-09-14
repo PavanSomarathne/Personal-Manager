@@ -5,28 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.pictza.Database.CartModel;
 import com.example.pictza.Database.DatabaseHelper;
-import com.example.pictza.Database.PaintingModel;
 import com.example.pictza.Database.TODOModel;
 
 import java.util.ArrayList;
 
-public class CartEdit extends AppCompatActivity {
+public class UpdateTODO extends AppCompatActivity {
 
     Spinner edstatus;
     EditText edtask,edlocation;
@@ -83,11 +76,11 @@ final String new_location = edlocation.getText().toString();
             @Override
             public void onClick(View view) {
                 if(dbHelper.updateTODO(todoId, edtask.getText().toString(),edstatus.getSelectedItem().toString(), edlocation.getText().toString())){
-                    Toast.makeText(CartEdit.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(CartEdit.this,CartView.class);
+                    Toast.makeText(UpdateTODO.this,"Successfully Updated",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(UpdateTODO.this, TODOView.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(CartEdit.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateTODO.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,17 +88,17 @@ final String new_location = edlocation.getText().toString();
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert_box=new AlertDialog.Builder(CartEdit.this);
+                AlertDialog.Builder alert_box=new AlertDialog.Builder(UpdateTODO.this);
                 alert_box.setMessage("Do You Really Want To Remove This Item ?").setCancelable(true)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(dbHelper.deleteTODO(todoId)){
-                                    Toast.makeText(CartEdit.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(CartEdit.this,CartView.class);
+                                    Toast.makeText(UpdateTODO.this,"Successfully Removed",Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(UpdateTODO.this, TODOView.class);
                                     startActivity(intent);
                                 }else {
-                                    Toast.makeText(CartEdit.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(UpdateTODO.this,"Something Went Wrong",Toast.LENGTH_SHORT).show();
 
                                 }
                             }

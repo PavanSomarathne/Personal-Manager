@@ -1,13 +1,11 @@
 package com.example.pictza;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -66,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void opensearch(View view) {
-        Intent intent = new Intent(HomeActivity.this, ManagePainting.class);
+        Intent intent = new Intent(HomeActivity.this, ManageEvent.class);
         startActivity(intent);
     }
 

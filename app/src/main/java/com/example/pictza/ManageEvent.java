@@ -14,12 +14,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pictza.Database.EventModel;
-import com.example.pictza.Database.PaintingModel;
 import com.example.pictza.Database.DatabaseHelper;
 
 import java.util.ArrayList;
 
-public class ManagePainting extends AppCompatActivity {
+public class ManageEvent extends AppCompatActivity {
 
 
     TableLayout table_tb;
@@ -32,7 +31,7 @@ public class ManagePainting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_cart);
+        setContentView(R.layout.activity_manage_event);
         dbHelper=new DatabaseHelper(this);
         eventModelArrylist=dbHelper.getAllEvents();
 
@@ -40,7 +39,7 @@ public class ManagePainting extends AppCompatActivity {
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(ManagePainting.this,PaintingSearch.class);
+                Intent intent=new Intent(ManageEvent.this, EventSearch.class);
                 intent.putExtra("painting_title",sv_search.getQuery().toString());
                 startActivity(intent);
 
@@ -74,7 +73,7 @@ public class ManagePainting extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(ManagePainting.this, PaintingEdit.class);
+                        Intent intent = new Intent(ManageEvent.this, PaintingEdit.class);
                         intent.putExtra("event_id", eventid);
                         startActivity(intent);
                     }

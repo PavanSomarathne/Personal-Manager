@@ -28,7 +28,7 @@ public class paintings extends AppCompatActivity {
     }
     public void manage(View view){
 
-        Intent intent = new Intent(paintings.this, ManagePainting.class);
+        Intent intent = new Intent(paintings.this, ManageEvent.class);
         startActivity(intent);
 
     }

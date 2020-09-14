@@ -30,7 +30,7 @@ public class ManageCart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_cart);
+        setContentView(R.layout.activity_manage_event);
         dbHelper=new DatabaseHelper(this);
         paintingModelArrylist=dbHelper.getAllPaintings();
 
@@ -38,7 +38,7 @@ public class ManageCart extends AppCompatActivity {
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(ManageCart.this,CartSearch.class);
+                Intent intent=new Intent(ManageCart.this, AddTODO.class);
                 intent.putExtra("painting_title",sv_search.getQuery().toString());
                 startActivity(intent);
 
@@ -71,7 +71,7 @@ public class ManageCart extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(ManageCart.this, CartSearch.class);
+                        Intent intent = new Intent(ManageCart.this, AddTODO.class);
                         intent.putExtra("painting_id", pid);
                         startActivity(intent);
                     }

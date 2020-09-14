@@ -14,11 +14,10 @@ import android.widget.TextView;
 
 import com.example.pictza.Database.DatabaseHelper;
 import com.example.pictza.Database.EventModel;
-import com.example.pictza.Database.PaintingModel;
 
 import java.util.ArrayList;
 
-public class PaintingSearch extends AppCompatActivity {
+public class EventSearch extends AppCompatActivity {
 
     TableLayout tb_search;
     SearchView sv_search;
@@ -40,7 +39,7 @@ public class PaintingSearch extends AppCompatActivity {
         sv_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent=new Intent(PaintingSearch.this,PaintingSearch.class);
+                Intent intent=new Intent(EventSearch.this, EventSearch.class);
                 intent.putExtra("painting_title",sv_search.getQuery().toString());
                 startActivity(intent);
                 return true;
@@ -69,7 +68,7 @@ public class PaintingSearch extends AppCompatActivity {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(PaintingSearch.this, PaintingEdit.class);
+                        Intent intent = new Intent(EventSearch.this, PaintingEdit.class);
                         intent.putExtra("event_id", eventid);
                         startActivity(intent);
                     }
