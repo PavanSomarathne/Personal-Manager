@@ -79,7 +79,7 @@ public class AddEvent extends AppCompatActivity {
                 String et_eventname=eventName.getText().toString();
                 String et_date=date.getText().toString();
                 String et_time=time.getText().toString();
-                String et_location=time.getText().toString();
+                String et_location=location_event.getText().toString();
 
                 if(et_eventname.isEmpty()){
                     Toast.makeText(AddEvent.this,"Enter Event Name",Toast.LENGTH_SHORT).show();
